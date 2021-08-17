@@ -4,7 +4,7 @@ database:
     user: "mysql"
     root: "root"
     password: "pwd"
-    dbname: "test"
+    dbname: "seeft"
 
 server:
     address: "localhost"

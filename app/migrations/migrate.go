@@ -60,7 +60,7 @@ func generateDsn() string {
 	pass := "pwd"
 	host := "mysql"
 	port := "3306"
-	dbName := "test"
+	dbName := "seeft"
 
 	dsn = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true&multiStatements=true", user, pass, host, port, dbName)
 

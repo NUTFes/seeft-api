@@ -3,15 +3,19 @@ GET = none
 
 .PHONY: up
 up:
-	docker-compose up
+	docker compose up
 
 .PHONY: build
 build:
-	docker-compose build
+	docker compose build
 
 .PHONY: run
 run:
-	docker-compose run --rm ${RUN}
+	docker compose run --rm ${RUN}
+
+.PHONY: exec
+exec:
+	docker compose exec api bash
 
 .PHONY: migrate
 migrate:
@@ -19,8 +23,8 @@ migrate:
 
 .PHONY: tidy
 tidy:
-	docker-compose run --rm api go mod tidy
+	docker compose run --rm api go mod tidy
 
 .PHONY: get
 get:
-	docker-compose run --rm api go get -u ${GET}
+	docker compose run --rm api go get -u ${GET}
