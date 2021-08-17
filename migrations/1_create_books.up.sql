@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS books(
-       id INT PRIMARY KEY,
-       title VARCHAR(20) NOT NULL,
-       category INT NOT NULL,
-       author VARCHAR(20) NOT NULL,
-       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
