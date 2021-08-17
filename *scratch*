@@ -1,0 +1,26 @@
+# SeeFT API
+
+# Features
+
+# Requirement
+* .editorconfig
+* Docker
+* make
+
+# Installation
+```
+$ make build
+$ make get -e $GET=""
+$ make migrate
+```
+
+# Usage
+```
+$ make up
+```
+
+# Note
+
+# Author
+* NUTMEG(技大祭実行委員会情報局)
+
