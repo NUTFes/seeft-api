@@ -1,7 +1,7 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: ''
+name: Feature request
+about: Suggest an idea for this project
+title: "[future] "
 labels: enhancement
 assignees: ''
 
