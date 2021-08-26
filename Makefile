@@ -28,3 +28,7 @@ tidy:
 .PHONY: get
 get:
 	docker compose run --rm api go get -u ${GET}
+
+.PHONY: vendor
+vendor:
+	docker compose run --rm api go mod vendor

@@ -21,3 +21,7 @@ tidy:
 .PHONY: get
 get:
 	docker-compose run --rm -e http_proxy=${PROXY} -e https_proxy=${PROXY} api go get ${GET}
+
+.PHONY: vendor
+vendor:
+	docker compose run --rm api go mod vendor

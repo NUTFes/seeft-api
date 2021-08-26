@@ -9,7 +9,7 @@
 # Installation
 ```
 $ make build
-$ make get -e $GET=""
+$ make vendor
 $ make migrate
 ```
 
