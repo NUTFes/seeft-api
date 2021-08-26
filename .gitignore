@@ -13,4 +13,4 @@
 
 # Go
 vendor
-app/tmp
+app/tmp/*
