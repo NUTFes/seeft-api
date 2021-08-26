@@ -15,8 +15,8 @@ services:
       - ./app:/go/src/github.com/mashita1023/test-api
     environment:
       GO111MODULE: "on"
-      http_proxy: "http://proxy.nagaokaut.ac.jp:8080"
-      https_proxy: "http://proxy.nagaokaut.ac.jp:8080"
+#      http_proxy: "http://proxy.nagaokaut.ac.jp:8080"
+#      https_proxy: "http://proxy.nagaokaut.ac.jp:8080"
 
   mysql:
     container_name: mysql
@@ -32,8 +32,8 @@ services:
       MYSQL_ROOT_PASSWORD: pwd
       MYSQL_USER: mysql
       MYSQL_PASSWORD: pwd
-      http_proxy: "http://proxy.nagaokaut.ac.jp:8080"
-      https_proxy: "http://proxy.nagaokaut.ac.jp:8080"
+ #     http_proxy: "http://proxy.nagaokaut.ac.jp:8080"
+ #     https_proxy: "http://proxy.nagaokaut.ac.jp:8080"
 
   adminer:
     container_name: adminer
