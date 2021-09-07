@@ -16,6 +16,12 @@ func router() *gin.Engine {
 
 	r.Use(CORS())
 
+	health := r.Group("/healthz")
+	{
+		healthController := controller.HealthController{}
+		health.GET("/", healthController.GetHealth)
+	}
+
 	user := r.Group("/user")
 	{
 		userController := controller.UserController{}

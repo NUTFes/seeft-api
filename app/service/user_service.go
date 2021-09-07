@@ -15,7 +15,7 @@ type UserParams struct {
 	name string
 }
 
-func (s UserService) All() ([]User, error) {
+func (s UserService) GetAll() ([]User, error) {
 	db := db.GetDB()
 
 	var user []User

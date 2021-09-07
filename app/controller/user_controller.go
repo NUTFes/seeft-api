@@ -14,7 +14,7 @@ type UserController struct{}
 func (controller UserController) Index(c *gin.Context) {
 
 	var service service.UserService
-	p, err := service.All()
+	p, err := service.GetAll()
 
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
