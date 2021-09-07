@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/mashita1023/test-api/db"
-	"github.com/mashita1023/test-api/server"
+	"github.com/NUTFes/seeft/db"
+	"github.com/NUTFes/seeft/server"
 )
 
 func main() {

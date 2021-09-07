@@ -2,10 +2,10 @@ package db
 
 import (
 	"fmt"
+	"github.com/NUTFes/seeft/config"
+	"github.com/NUTFes/seeft/entity"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"github.com/mashita1023/test-api/config"
-	"github.com/mashita1023/test-api/entity"
 )
 
 var (
@@ -37,5 +37,5 @@ func Close() {
 }
 
 func autoMigration() {
-	db.AutoMigrate(&entity.Book{})
+	db.AutoMigrate(&entity.User{})
 }

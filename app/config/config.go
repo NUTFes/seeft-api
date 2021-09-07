@@ -33,7 +33,7 @@ func NewConfig() {
 
 	viper.SetConfigType("yml")
 
-	viper.AddConfigPath(filepath.Join("$GOPATH", "src", "github.com", "mashita1023", "test-api", "config"))
+	viper.AddConfigPath(filepath.Join("$GOPATH", "src", "github.com", "NUTFes", "seeft", "config"))
 
 	viper.AutomaticEnv()
 
@@ -51,5 +51,5 @@ func NewConfig() {
 
 	fmt.Println(Conf)
 
-	//	return conf
+	//return conf
 }
