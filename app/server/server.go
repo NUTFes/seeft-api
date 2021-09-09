@@ -29,6 +29,12 @@ func router() *gin.Engine {
 		user.GET("/", userController.Index)
 	}
 
+	auth := r.Group("/auth")
+	{
+		authController := controller.AuthController{}
+		auth.POST("/", authController.Index)
+	}
+
 	return r
 }
 

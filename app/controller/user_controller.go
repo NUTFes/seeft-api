@@ -25,13 +25,15 @@ func (controller UserController) Index(c *gin.Context) {
 }
 
 func (pc UserController) FindByID(c *gin.Context) {
-	id, _ := strconv.Atoi(c.Query("id"))
+	id, _ := strconv.Atoi(c.Param("id"))
 
 	var s service.UserService
 	p, err := s.FindByID(id)
 
 	if err != nil {
-		c.AbortWithStatus(http.StatusNotFound)
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": fmt.Sprintf("%s", err),
+		})
 		fmt.Println(err)
 	} else {
 		c.JSON(http.StatusOK, p)

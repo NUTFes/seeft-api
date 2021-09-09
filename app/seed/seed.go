@@ -21,6 +21,7 @@ import (
 */
 type User struct {
 	Name string
+	Mail string
 }
 
 func main() {
@@ -46,7 +47,7 @@ func main() {
 			log.Fatal(err)
 		}
 
-		user = User{Name: record[4]}
+		user = User{Name: record[4], Mail: record[5]}
 		result := tx.Create(&user)
 		if result.Error != nil {
 			fmt.Println(user)

@@ -10,11 +10,6 @@ type UserService struct{}
 
 type User entity.User
 
-type UserParams struct {
-	id   int
-	name string
-}
-
 func (s UserService) GetAll() ([]User, error) {
 	db := db.GetDB()
 
@@ -33,9 +28,29 @@ func (s UserService) GetAll() ([]User, error) {
 func (s UserService) FindByID(id int) (*User, error) {
 	db := db.GetDB()
 
-	var user User
+	var user []User
 
-	param := UserParams{id, ""}
+	if err := db.Take(&user).Error; err != nil {
+		return nil, err
+	}
+
+	if id == 0 {
+		return nil, fmt.Errorf("query not found.")
+	}
+
+	if err := db.Table("users").Where("id = ?", id).First(&user).Error; err != nil {
+		return nil, fmt.Errorf("%w", err)
+	}
+
+	fmt.Println(user)
+
+	return &user[0], nil
+}
+
+func (s UserService) FindByMail(mail string) (*User, error) {
+	db := db.GetDB()
+
+	var user []User
 
 	if err := db.Take(&user).Error; err != nil {
 		return nil, err
@@ -43,11 +58,11 @@ func (s UserService) FindByID(id int) (*User, error) {
 
 	tx := db
 
-	if param.id != 0 {
-		tx = tx.Where("id = ?", 1).Find(&user)
+	if mail != "" {
+		tx = tx.Where("mail = ?", mail).First(&user)
 	}
 
-	fmt.Println(&user)
+	fmt.Println(user)
 
-	return &user, nil
+	return &user[0], nil
 }
