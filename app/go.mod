@@ -1,4 +1,4 @@
-module github.com/mashita1023/test-api
+module github.com/NUTFes/seeft
 
 go 1.16
 

@@ -12,7 +12,7 @@ services:
     links:
       - mysql
     volumes:
-      - ./app:/go/src/github.com/mashita1023/test-api
+      - ./app:/go/src/github.com/NUTFes/seeft
     environment:
       GO111MODULE: "on"
 #      http_proxy: "http://proxy.nagaokaut.ac.jp:8080"

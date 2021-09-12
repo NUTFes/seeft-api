@@ -10,7 +10,11 @@
 ```
 $ make build
 $ make vendor
-$ make migrate
+$ make exec
+# cd migration
+# go run migraion.go up
+# cd ../seed
+# go run seed.go
 ```
 
 # Usage

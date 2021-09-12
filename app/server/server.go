@@ -1,8 +1,8 @@
 package server
 
 import (
+	"github.com/NUTFes/seeft/controller"
 	"github.com/gin-gonic/gin"
-	book "github.com/mashita1023/test-api/controller"
 	"net/http"
 )
 
@@ -16,16 +16,23 @@ func router() *gin.Engine {
 
 	r.Use(CORS())
 
-	u := r.Group("/books")
+	health := r.Group("/healthz")
 	{
-		ctrl := book.Controller{}
-		u.GET("", ctrl.Index)
+		healthController := controller.HealthController{}
+		health.GET("/", healthController.GetHealth)
 	}
 
-	t := r.Group("/book")
+	user := r.Group("/user")
 	{
-		ctrl := book.Controller{}
-		t.GET("/:category", ctrl.GetCategory)
+		userController := controller.UserController{}
+		user.GET("/:id", userController.FindByID)
+		user.GET("/", userController.Index)
+	}
+
+	auth := r.Group("/auth")
+	{
+		authController := controller.AuthController{}
+		auth.POST("/", authController.Index)
 	}
 
 	return r
