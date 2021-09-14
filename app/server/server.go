@@ -35,6 +35,12 @@ func router() *gin.Engine {
 		auth.POST("/", authController.Index)
 	}
 
+	shift := r.Group("/shift")
+	{
+		shiftController := controller.ShiftController{}
+		shift.GET("/:id", shiftController.FindByID)
+	}
+
 	return r
 }
 
