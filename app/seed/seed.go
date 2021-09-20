@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/NUTFes/seeft/db"
 	"github.com/NUTFes/seeft/entity"
@@ -27,6 +28,7 @@ type User struct {
 
 type Shift struct {
 	UserId  int
+	Date    string
 	Time    string
 	Work    string
 	Weather string
@@ -45,39 +47,69 @@ func main() {
 }
 
 func shiftInput() error {
-	f, err := os.Open("39th_pre_sunny.csv")
-	if err != nil {
-		return fmt.Errorf("cannot open csv: %w", err)
+	filename := []string{
+		"39_pre_sunny.csv",
+		"39_pre_rainy.csv",
+		"39_current_sunny.csv",
+		"39_current_rainy.csv",
+		"39_cleanup.csv",
 	}
 
-	db.Init()
-	tx := db.GetDB()
+	for _, v := range filename {
 
-	r := csv.NewReader(f)
+		f, err := os.Open(v)
+		if err != nil {
+			return fmt.Errorf("cannot open csv: %w", err)
+		}
 
-	record, err := r.ReadAll()
-	if err != nil {
-		return fmt.Errorf("read error: %w", err)
-	}
-	// 39thのシフトと変更点があるので修正必須
-	// 学年と局の情報が追加されます。
-	for i := 2; i < len(record[0]); i++ {
-		for j := 2; j < len(record); j++ {
-			var user entity.User
-			if err := tx.Table("users").Where("name = ?", record[1][i]).First(&user).Error; err != nil {
-				fmt.Println(err)
-				i++
-				break
-			}
-			fmt.Println(&user)
-			shift := Shift{user.ID, record[j][0], record[j][i], "sunny"}
-			fmt.Println(shift)
-			result := tx.Create(&shift)
-			if result.Error != nil {
+		var weather string
+		if strings.Contains(v, "sunny") {
+			weather = "sunny"
+		} else if strings.Contains(v, "rainy") {
+			weather = "rainy"
+		} else {
+			weather = "none"
+		}
+
+		var date string
+		if strings.Contains(v, "pre") {
+			date = "preparationDay"
+		} else if strings.Contains(v, "current") {
+			date = "currentDay"
+		} else {
+			date = "cleanupDay"
+		}
+
+		db.Init()
+		tx := db.GetDB()
+
+		r := csv.NewReader(f)
+
+		record, err := r.ReadAll()
+		if err != nil {
+			return fmt.Errorf("read error: %w", err)
+		}
+		// 39thのシフトと変更点があるので修正必須
+		// 学年と局の情報が追加されます。
+		for i := 2; i < len(record[0]); i++ {
+			for j := 2; j < len(record); j++ {
+				var user entity.User
+				if err := tx.Table("users").Where("name = ?", record[1][i]).First(&user).Error; err != nil {
+					fmt.Println(err)
+					i++
+					break
+				}
+				fmt.Println(&user)
+				shift := Shift{user.ID, date, record[j][0], record[j][i], weather}
 				fmt.Println(shift)
-				//				return fmt.Errorf("create db: %w", result.Error)
+				result := tx.Create(&shift)
+				if result.Error != nil {
+					fmt.Println(shift)
+					//				return fmt.Errorf("create db: %w", result.Error)
+				}
 			}
 		}
+		f.Close()
 	}
 	return nil
 }
