@@ -17,11 +17,12 @@ func (controller UserController) Index(c *gin.Context) {
 	p, err := service.GetAll()
 
 	if err != nil {
-		c.AbortWithStatus(http.StatusNotFound)
+		c.AbortWithStatus(http.StatusBadRequest)
 		fmt.Println(err)
-	} else {
-		c.JSON(http.StatusOK, p)
+		return
 	}
+
+	c.JSON(http.StatusOK, p)
 }
 
 func (pc UserController) FindByID(c *gin.Context) {
@@ -31,11 +32,13 @@ func (pc UserController) FindByID(c *gin.Context) {
 	p, err := s.FindByID(id)
 
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": fmt.Sprintf("%s", err),
 		})
 		fmt.Println(err)
-	} else {
-		c.JSON(http.StatusOK, p)
+		return
 	}
+
+	c.JSON(http.StatusOK, p)
+
 }

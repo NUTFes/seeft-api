@@ -22,6 +22,10 @@ func (s UserService) GetAll() ([]User, error) {
 	tx := db
 	tx = tx.Find(&user)
 
+	if len(user) == 0 {
+		return nil, fmt.Errorf("Can't find user.")
+	}
+
 	return user, nil
 }
 
@@ -42,7 +46,9 @@ func (s UserService) FindByID(id int) (*User, error) {
 		return nil, fmt.Errorf("%w", err)
 	}
 
-	fmt.Println(user)
+	if len(user) == 0 {
+		return nil, fmt.Errorf("This user is not exist.")
+	}
 
 	return &user[0], nil
 }
@@ -62,7 +68,9 @@ func (s UserService) FindByMail(mail string) (*User, error) {
 		tx = tx.Where("mail = ?", mail).First(&user)
 	}
 
-	fmt.Println(user)
+	if len(user) == 0 {
+		return nil, fmt.Errorf("This user is not exist.")
+	}
 
 	return &user[0], nil
 }

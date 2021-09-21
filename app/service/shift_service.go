@@ -26,5 +26,9 @@ func (s ShiftService) Search(id int, date string, weather string) ([]Shift, erro
 		return nil, fmt.Errorf("%w", err)
 	}
 
+	if len(shift) == 0 {
+		return nil, fmt.Errorf("Shift is not find.")
+	}
+
 	return shift, nil
 }

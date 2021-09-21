@@ -137,7 +137,10 @@ func userInput() error {
 
 		}
 
-		user = User{Name: record[4], Mail: record[5]}
+		name := strings.ReplaceAll(record[4], " ", "")
+		name = strings.ReplaceAll(name, "　", "")
+
+		user = User{Name: name, Mail: record[5]}
 		result := tx.Create(&user)
 		if result.Error != nil {
 			fmt.Println(user)
