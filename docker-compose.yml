@@ -13,8 +13,9 @@ services:
       - mysql
     volumes:
       - ./app:/go/src/github.com/NUTFes/seeft
+    env_file:
+      - proxy.env
     environment:
-      GO111MODULE: "on"
 #      http_proxy: "http://proxy.nagaokaut.ac.jp:8080"
 #      https_proxy: "http://proxy.nagaokaut.ac.jp:8080"
 
@@ -27,6 +28,8 @@ services:
     expose:
       - 3306
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --skip-character-set-client-handshake
+    env_file:
+      - proxy.env
     environment:
       MYSQL_DATABASE: seeft
       MYSQL_ROOT_PASSWORD: pwd
@@ -42,3 +45,5 @@ services:
       - mysql
     ports:
       - 8080:8080
+    env_file:
+      - proxy.env
