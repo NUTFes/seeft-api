@@ -19,7 +19,7 @@ func (controller ShiftController) Search(c *gin.Context) {
 	var service service.ShiftService
 	p, err := service.Search(id, date, weather)
 	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": fmt.Sprintf("%s", err),
 		})
 		fmt.Println(err)

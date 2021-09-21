@@ -34,7 +34,8 @@ func (controller AuthController) Index(c *gin.Context) {
 		c.AbortWithStatus(http.StatusNotFound)
 		fmt.Println(err)
 		return
-	} else {
-		c.JSON(http.StatusOK, p)
 	}
+
+	c.JSON(http.StatusOK, p)
+
 }
