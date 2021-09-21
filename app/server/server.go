@@ -38,8 +38,9 @@ func router() *gin.Engine {
 	shift := r.Group("/shift")
 	{
 		shiftController := controller.ShiftController{}
-		shift.GET("/:id", shiftController.FindByID)
-		shift.GET("/:id/:date", shiftController.FindByIDAndDate)
+		shift.GET("/:id", shiftController.Search)
+		shift.GET("/:id/:date", shiftController.Search)
+		shift.GET("/:id/:date/:weather", shiftController.Search)
 	}
 
 	return r

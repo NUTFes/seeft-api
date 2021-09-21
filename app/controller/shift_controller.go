@@ -11,28 +11,13 @@ import (
 
 type ShiftController struct{}
 
-func (controller ShiftController) FindByID(c *gin.Context) {
-	id, _ := strconv.Atoi(c.Param("id"))
-
-	var service service.ShiftService
-	p, err := service.FindByID(id)
-
-	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": fmt.Sprintf("%s", err),
-		})
-		fmt.Println(err)
-	} else {
-		c.JSON(http.StatusOK, p)
-	}
-}
-
-func (controller ShiftController) FindByIDAndDate(c *gin.Context) {
+func (controller ShiftController) Search(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	date := c.Param("date")
+	weather := c.Param("weather")
 
 	var service service.ShiftService
-	p, err := service.FindByIDAndDate(id, date)
+	p, err := service.Search(id, date, weather)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": fmt.Sprintf("%s", err),
