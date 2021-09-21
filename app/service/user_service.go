@@ -22,6 +22,10 @@ func (s UserService) GetAll() ([]User, error) {
 	tx := db
 	tx = tx.Find(&user)
 
+	if &user == nil {
+		return nil, fmt.Errorf("this user does not exist.")
+	}
+
 	return user, nil
 }
 

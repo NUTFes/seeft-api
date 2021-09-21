@@ -35,7 +35,15 @@ func (pc UserController) FindByID(c *gin.Context) {
 			"error": fmt.Sprintf("%s", err),
 		})
 		fmt.Println(err)
-	} else {
-		c.JSON(http.StatusOK, p)
+		return
 	}
+
+	if p == nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "user is not found.",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, p)
+
 }
