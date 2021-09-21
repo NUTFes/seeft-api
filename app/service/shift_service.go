@@ -27,6 +27,22 @@ func (s ShiftService) FindByID(id int) ([]Shift, error) {
 		return nil, fmt.Errorf("%w", err)
 	}
 
+	return shift, nil
+}
+
+func (s ShiftService) FindByIDAndDate(id int, date string) ([]Shift, error) {
+	db := db.GetDB()
+
+	var shift []Shift
+
+	if err := db.Take(&shift).Error; err != nil {
+		return nil, err
+	}
+
+	if err := db.Table("shifts").Where("user_id = ?", id).Where("date = ?", date).Find(&shift).Error; err != nil {
+		return nil, fmt.Errorf("%w", err)
+	}
+
 	fmt.Println(shift)
 
 	return shift, nil

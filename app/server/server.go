@@ -39,6 +39,7 @@ func router() *gin.Engine {
 	{
 		shiftController := controller.ShiftController{}
 		shift.GET("/:id", shiftController.FindByID)
+		shift.GET("/:id/:date", shiftController.FindByIDAndDate)
 	}
 
 	return r
