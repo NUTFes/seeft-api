@@ -9,6 +9,7 @@ type Shift struct {
 	Time      string `gorm:"size:128"`
 	Work      string `gorm:"size:128"`
 	Weather   string `gorm:"size:128"`
+	Check     bool   `gorm:"size:128"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
