@@ -15,6 +15,10 @@ type jsonRequest struct {
 	Password string `json:"password"`
 }
 
+type postRequest struct {
+	ID int `json:"id"`
+}
+
 func (controller AuthController) Index(c *gin.Context) {
 	var json jsonRequest
 	if err := c.ShouldBindJSON(&json); err != nil {
@@ -37,5 +41,26 @@ func (controller AuthController) Index(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, p)
+
+}
+
+func (controller AuthController) PostCheck(c *gin.Context) {
+	var json postRequest
+	if err := c.ShouldBindJSON(&json); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	var service service.ShiftService
+
+	err := service.PostCheck(json.ID)
+
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "OK"})
 
 }

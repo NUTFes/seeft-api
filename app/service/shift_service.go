@@ -32,3 +32,15 @@ func (s ShiftService) Search(id int, date string, weather string) ([]Shift, erro
 
 	return shift, nil
 }
+
+func (s ShiftService) PostCheck(id int) error {
+	db := db.GetDB()
+
+	fmt.Printf("shifts.id: %v\n", id)
+
+	if err := db.Table("shifts").Where("id = ?", id).Update("attendance", 1).Error; err != nil {
+		return fmt.Errorf("%w", err)
+	}
+
+	return nil
+}
