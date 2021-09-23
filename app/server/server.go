@@ -33,6 +33,7 @@ func router() *gin.Engine {
 	{
 		authController := controller.AuthController{}
 		auth.POST("/", authController.Index)
+		auth.POST("/attendance", authController.PostCheck)
 	}
 
 	shift := r.Group("/shift")
