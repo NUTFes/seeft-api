@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS shifts(
   user_id INTEGER NOT NULL,
   date varchar(255) NOT NULL,
   time VARCHAR(255) NOT NULL,
-  work VARCHAR(255) NOT NULL,
+  work_id INT NOT NULL,
   weather VARCHAR(255) NOT NULL,
   attendance BOOL NOT NULL DEFAULT false,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
