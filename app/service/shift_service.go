@@ -3,12 +3,25 @@ package service
 import (
 	"fmt"
 	"github.com/NUTFes/seeft/db"
-	"github.com/NUTFes/seeft/entity"
 )
 
 type ShiftService struct{}
 
-type Shift entity.Shift
+type Shift struct {
+	ID      int
+	UserID  int
+	Date    string
+	Time    string
+	Work    string
+	URL     string
+	Weather string
+}
+
+type Work struct {
+	ID   int
+	Name string
+	URL  string
+}
 
 func (s ShiftService) Search(id int, date string, weather string) ([]Shift, error) {
 	db := db.GetDB()
@@ -22,7 +35,7 @@ func (s ShiftService) Search(id int, date string, weather string) ([]Shift, erro
 		return nil, err
 	}
 
-	if err := db.Table("shifts").Where(query).Find(&shift).Error; err != nil {
+	if err := db.Table("shifts").Select("shifts.*, works.name as work, works.url").Where(query).Joins("left join works on shifts.work_id = works.id").Find(&shift).Error; err != nil {
 		return nil, fmt.Errorf("%w", err)
 	}
 

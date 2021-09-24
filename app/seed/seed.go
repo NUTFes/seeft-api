@@ -27,15 +27,24 @@ type User struct {
 }
 
 type Shift struct {
-	UserId  int
+	UserID  int
 	Date    string
 	Time    string
-	Work    string
+	WorkID  int
 	Weather string
+}
+
+type Work struct {
+	Name string
+	URL  string
 }
 
 func main() {
 	if err := userInput(); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := workInput(); err != nil {
 		log.Fatal(err)
 	}
 
@@ -46,13 +55,46 @@ func main() {
 	fmt.Println("OK. Seed database.")
 }
 
+func workInput() error {
+	filename := "40_work_list.csv"
+
+	f, err := os.Open(filename)
+	if err != nil {
+		return fmt.Errorf("cannot open csv: %w", err)
+	}
+	defer f.Close()
+
+	db.Init()
+	tx := db.GetDB()
+
+	r := csv.NewReader(f)
+	record, err := r.ReadAll()
+	if err != nil {
+		return fmt.Errorf("read error: %w", err)
+	}
+
+	fmt.Println(record)
+
+	for i := 0; i < len(record[0]); i++ {
+		work := Work{Name: record[0][i], URL: "https://google.com"}
+		fmt.Println(work)
+		result := tx.Create(&work)
+		if result.Error != nil {
+			fmt.Println(work)
+			return fmt.Errorf("create db: %w", result.Error)
+		}
+	}
+
+	return nil
+}
+
 func shiftInput() error {
 	filename := []string{
-		"39_pre_sunny.csv",
-		"39_pre_rainy.csv",
-		"39_current_sunny.csv",
-		"39_current_rainy.csv",
-		"39_cleanup.csv",
+		"40_pre_sunny.csv",
+		"40_pre_rainy.csv",
+		"40_current_sunny.csv",
+		"40_current_rainy.csv",
+		"40_cleanup.csv",
 	}
 
 	for _, v := range filename {
@@ -92,15 +134,24 @@ func shiftInput() error {
 		// 39thのシフトと変更点があるので修正必須
 		// 学年と局の情報が追加されます。
 		for i := 2; i < len(record[0]); i++ {
-			for j := 2; j < len(record); j++ {
+			for j := 4; j < len(record); j++ {
 				var user entity.User
-				if err := tx.Table("users").Where("name = ?", record[1][i]).First(&user).Error; err != nil {
+
+				name := strings.ReplaceAll(record[3][i], " ", "")
+				name = strings.ReplaceAll(name, "　", "")
+				fmt.Println(name)
+
+				if err := tx.Table("users").Where("name = ?", name).First(&user).Error; err != nil {
 					fmt.Println(err)
 					i++
 					break
 				}
-				fmt.Println(&user)
-				shift := Shift{user.ID, date, record[j][0], record[j][i], weather}
+
+				var work entity.Work
+				if err := tx.Table("works").Where("name = ?", record[j][i]).First(&work).Error; err != nil {
+				}
+
+				shift := Shift{user.ID, date, record[j][0], work.ID, weather}
 				fmt.Println(shift)
 				result := tx.Create(&shift)
 				if result.Error != nil {
