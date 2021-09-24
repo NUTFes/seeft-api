@@ -64,3 +64,18 @@ func (controller AuthController) PostCheck(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "OK"})
 
 }
+
+func (controller AuthController) MailAuth(c *gin.Context) {
+	mail := c.Param("mail")
+
+	var service service.UserService
+
+	res, err := service.FindByMail(mail)
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		fmt.Println(err)
+		return
+	}
+
+	c.JSON(http.StatusOK, res)
+}
