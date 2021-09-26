@@ -13,11 +13,12 @@ type ShiftController struct{}
 
 func (controller ShiftController) Search(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	date := c.Param("date")
+	day := c.Param("day")
 	weather := c.Param("weather")
 
 	var service service.ShiftService
-	p, err := service.Search(id, date, weather)
+
+	p, err := service.Search(id, day, weather)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": fmt.Sprintf("%s", err),

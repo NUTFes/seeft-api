@@ -35,8 +35,11 @@ type Shift struct {
 }
 
 type Work struct {
-	Name string
-	URL  string
+	Name      string
+	URL       string
+	President string
+	TEL       string
+	Place     string
 }
 
 func main() {
@@ -75,14 +78,15 @@ func workInput() error {
 
 	fmt.Println(record)
 
-	for i := 0; i < len(record[0]); i++ {
-		work := Work{Name: record[0][i], URL: "https://google.com"}
+	for i := 0; i < len(record); i++ {
+		work := Work{Name: record[i][0], URL: record[i][1], President: record[i][2], TEL: record[i][3], Place: record[i][4]}
 		fmt.Println(work)
 		result := tx.Create(&work)
 		if result.Error != nil {
 			fmt.Println(work)
 			return fmt.Errorf("create db: %w", result.Error)
 		}
+
 	}
 
 	return nil
