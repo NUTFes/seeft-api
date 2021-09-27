@@ -15,6 +15,7 @@ type Shift struct {
 	Date    string
 	Time    string
 	Work    string
+	WorkID  int
 	URL     string
 	Weather string
 }
