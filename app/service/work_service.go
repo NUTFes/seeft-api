@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/NUTFes/seeft/db"
-	//	"github.com/NUTFes/seeft/entity"
+	"github.com/NUTFes/seeft/entity"
 )
 
 type WorkService struct{}
@@ -40,4 +40,16 @@ group by works.id
 	fmt.Println(&work)
 
 	return &work, nil
+}
+
+func (s WorkService) WorkList() ([]entity.Work, error) {
+	db := db.GetDB()
+
+	var works []entity.Work
+
+	if err := db.Table("works").Find(&works).Error; err != nil {
+		return nil, err
+	}
+
+	return works, nil
 }
