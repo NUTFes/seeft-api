@@ -49,6 +49,7 @@ func router() *gin.Engine {
 	{
 		workController := controller.WorkController{}
 		work.GET("/:workID/:userID/:day/:weather/:time", workController.WorkDetail)
+		work.GET("/list", workController.WorkList)
 	}
 
 	return r

@@ -31,3 +31,17 @@ func (controller WorkController) WorkDetail(c *gin.Context) {
 
 	c.JSON(http.StatusOK, p)
 }
+
+func (controller WorkController) WorkList(c *gin.Context) {
+	var service service.WorkService
+
+	p, err := service.WorkList()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": fmt.Sprintf("%s", err),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, p)
+}
