@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS works(
   president varchar(255),
   tel varchar(15),
   place varchar(50),
+  color varchar(10),
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
