@@ -93,14 +93,20 @@ func workInput() error {
 }
 
 func shiftInput() error {
-	filename := []string{
-		"40_pre_sunny.csv",
-		"40_pre_rainy.csv",
-		"40_current_sunny.csv",
-		"40_current_rainy.csv",
-		"40_cleanup.csv",
-	}
+	/*
+		filename := []string{
+			"40_pre_sunny.csv",
+			"40_pre_rainy.csv",
+			"40_current_sunny.csv",
+			"40_current_rainy.csv",
+			"40_cleanup.csv",
+		}
+	*/
 
+	filename := []string{
+		"40_pre.csv",
+		"40_current.csv",
+	}
 	for _, v := range filename {
 
 		f, err := os.Open(v)
