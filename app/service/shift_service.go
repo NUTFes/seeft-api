@@ -17,6 +17,7 @@ type Shift struct {
 	Work    string
 	WorkID  int
 	URL     string
+	Color   string
 	Weather string
 }
 
@@ -38,7 +39,7 @@ func (s ShiftService) Search(id int, date string, weather string) ([]Shift, erro
 		return nil, err
 	}
 
-	if err := db.Table("shifts").Select("shifts.*, works.name as work, works.url").Where(query).Joins("left join works on shifts.work_id = works.id").Find(&shift).Error; err != nil {
+	if err := db.Table("shifts").Select("shifts.*, works.name as work, works.url, works.color").Where(query).Joins("left join works on shifts.work_id = works.id").Find(&shift).Error; err != nil {
 		return nil, fmt.Errorf("%w", err)
 	}
 

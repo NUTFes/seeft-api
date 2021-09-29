@@ -15,6 +15,7 @@ type work struct {
 	Place     string
 	President string
 	TEL       string
+	Color     string
 }
 
 func (s WorkService) WorkWithUser(userID int, day string, weather string, workID int, time string) (*work, error) {
@@ -24,7 +25,7 @@ func (s WorkService) WorkWithUser(userID int, day string, weather string, workID
 	var work work
 
 	err := db.Raw(`
-select works.id, works.name, works.url, group_concat(users.name) as users, works.place, works.president, works.tel
+select works.id, works.name, works.url, group_concat(users.name) as users, works.place, works.president, works.tel, works.color
 from shifts 
 left join users on users.id = shifts.user_id 
 left join works on works.id = shifts.work_id 
@@ -34,7 +35,7 @@ group by works.id
 
 	if err != nil {
 		if err := db.Table("works").
-			Select("works.id, works.name, works.url,  works.place, works.president, works.tel").
+			Select("works.id, works.name, works.url,  works.place, works.president, works.tel, works.color").
 			Joins("left join shifts on works.id = shifts.work_id").
 			Where("shifts.date = ?", day).
 			Where("shifts.weather = ?", weather).
