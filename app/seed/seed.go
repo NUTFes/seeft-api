@@ -40,6 +40,7 @@ type Work struct {
 	President string
 	TEL       string
 	Place     string
+	Color     string
 }
 
 func main() {
@@ -79,7 +80,7 @@ func workInput() error {
 	fmt.Println(record)
 
 	for i := 0; i < len(record); i++ {
-		work := Work{Name: record[i][0], URL: record[i][1], President: record[i][2], TEL: record[i][3], Place: record[i][4]}
+		work := Work{Name: record[i][0], URL: record[i][1], President: record[i][2], TEL: record[i][3], Place: record[i][4], Color: record[i][5]}
 		fmt.Println(work)
 		result := tx.Create(&work)
 		if result.Error != nil {

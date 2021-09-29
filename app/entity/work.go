@@ -9,6 +9,7 @@ type Work struct {
 	Place     string
 	President string
 	TEL       string
+	Color     string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
