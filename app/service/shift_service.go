@@ -39,7 +39,7 @@ func (s ShiftService) Search(id int, date string, weather string) ([]Shift, erro
 		return nil, err
 	}
 
-	if err := db.Table("shifts").Select("shifts.*, works.name as work, works.url, ifnull(nullif(works.color, ''), '#cccccc') as color").Where(query).Joins("left join works on shifts.work_id = works.id").Find(&shift).Error; err != nil {
+	if err := db.Table("shifts").Select("shifts.*, works.name as work, works.url, ifnull(nullif(works.color, ''), '#fffafa') as color").Where(query).Joins("left join works on shifts.work_id = works.id").Find(&shift).Error; err != nil {
 		return nil, fmt.Errorf("%w", err)
 	}
 
@@ -47,8 +47,6 @@ func (s ShiftService) Search(id int, date string, weather string) ([]Shift, erro
 		return nil, fmt.Errorf("Shift is not find.")
 	}
 
-	fmt.Println("color test")
-	fmt.Println(shift[0].Color)
 	return shift, nil
 }
 
