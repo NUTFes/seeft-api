@@ -1,0 +1,6 @@
+(undo-tree-save-format-version . 1)
+"abe7f057285fcc6aa79f7c0e42b9ef07db1dc74e"
+[nil nil nil nil (25161 32251 626283 0) 0 nil]
+([nil nil ((#("p" 0 1 (fontified t face font-lock-string-face)) . -385) (undo-tree-id0 . -1) (#("r" 0 1 (fontified t face font-lock-string-face)) . -386) (undo-tree-id1 . -1) (#("e" 0 1 (fontified t face font-lock-string-face)) . -387) (undo-tree-id2 . -1) (#("c" 0 1 (fontified t face font-lock-string-face)) . -388) (undo-tree-id3 . -1) (#("o" 0 1 (fontified t face font-lock-string-face)) . -389) (undo-tree-id4 . -1) (#("m" 0 1 (fontified t face font-lock-string-face)) . -390) (undo-tree-id5 . -1) (#("m" 0 1 (fontified t face font-lock-string-face)) . -391) (undo-tree-id6 . -1) 392 (t 25161 30190 770008 149000)) nil (25161 32251 626280 0) 0 nil])
+([nil current ((385 . 390)) nil (25161 32251 626257 0) 0 nil])
+nil
