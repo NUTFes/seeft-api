@@ -25,4 +25,3 @@ analyzer:
   errors:
     # ignore
     unnecessary_new: ignore
-    

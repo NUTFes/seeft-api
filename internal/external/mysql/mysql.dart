@@ -9,7 +9,8 @@ class Mysql implements Database {
   Mysql();
 
   Future<void> connect() async {
-    final ConnectionSettings settings = new ConnectionSettings(host: 'localhost', port: 3306, user: 'mysql', password: 'pwd', db: 'seeft');
+    final ConnectionSettings settings =
+        new ConnectionSettings(host: 'localhost', port: 3306, user: 'mysql', password: 'pwd', db: 'seeft');
     conn = await MySqlConnection.connect(settings);
   }
 
