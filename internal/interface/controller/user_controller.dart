@@ -113,34 +113,4 @@ class UserController {
       return statusResponse.responseBadRequest(json);
     }
   }
-
-  getSessionByUserID(Request request, String id) async {
-    try {
-      final body = await request.readAsString();
-      final params = jsonDecode(body);
-
-      List<Session> sessions = await userUsecase.getSessionByUserID(
-        request.context,
-        Session(
-          0,
-          "",
-          "",
-          int.parse(id)
-        )
-      );
-
-      List<Map> list = [];
-      sessions.forEach((session) {
-          list.add(session.toMap);
-      });
-
-      String json = jsonEncode(list);
-      return statusResponse.responseOK(json);
-      //    } on Exception catch(e, st) {
-    } catch(e, st) {
-      print(e);
-      var json = jsonEncode({"message": e.toString()});
-      return statusResponse.responseBadRequest(json);
-    }
-  }
 }

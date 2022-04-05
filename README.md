@@ -1,12 +1,36 @@
-A simple command-line application.
+# SeeFT-API
 
-# Run
+## Features
+
+## Requirement
+`production`
+- dart
+- docker
+
+`dev`
+- mysqldef
+but run `./scripts/script.sh`
+
+## Run
 
 ``` fish
 $ docker-compose build
 $ docker-comopose up -d
-$ /bin/sh scripts/script.sh
-$ mysqldef -umysql precomm < sql/<name>.create.sql
+$ ./scripts/script.sh
+$ ./sql/migrate.sh
 $ dart run
 ```
 
+## Usage
+
+## Note
+.shスクリプトが動かない場合以下のコマンドを実行すること
+
+```
+chmod u+x ./scripts/script.sh
+chmod u+x ./sql/migrate.sh
+```
+
+## Author
+NUTMEG（技大祭実行委員会情報局）
+mail: nutfes.info [at] gmail

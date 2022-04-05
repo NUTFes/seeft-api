@@ -1,12 +1,10 @@
 import '../entity/export.dart';
 import './repository/user_repository.dart';
-import './repository/session_repository.dart';
 
 class UserUsecase {
   UserRepository userRepository;
-  SessionRepository sessionRepository;
   
-  UserUsecase(this.userRepository, this.sessionRepository);
+  UserUsecase(this.userRepository);
 
   Future<List<User>> getUsers(ctx) async {
     List<User> users = await userRepository.getUsers(ctx);
@@ -40,14 +38,6 @@ class UserUsecase {
   Future<User> deleteUser(ctx, User req) async {
     User user = await userRepository.deleteUser(ctx, req);
     return user;
-  }
-
-  Future<List<Session>> getSessionByUserID(ctx, Session req) async {
-    List<Session> sessions = await sessionRepository.getSessionByUserID(
-      ctx,
-      req
-    );
-    return sessions;
   }
 
 }

@@ -9,12 +9,10 @@ import '../../interface/controller/health_controller.dart';
 class Service {
   var healthController;
   var userController;
-  var sessionController;
 
   Service(
     this.healthController,
     this.userController,
-    this.sessionController
   );
 
   Handler get handler {
@@ -30,8 +28,6 @@ class Service {
     router.mount('/api', Api().router);
 
     router.mount('/user', UserApi(userController).router);
-
-    router.mount('/session', SessionApi(sessionController).router);
 
     return router;
   }
