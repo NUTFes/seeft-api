@@ -1,4 +1,3 @@
-import 'dart:async' show Future;
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
@@ -20,7 +19,7 @@ class Service {
 
     print(userController.runtimeType);
     router.get('/', (Request request) {
-        return Response.ok('Get request');
+      return Response.ok('Get request');
     });
 
     router.get('/healthz', healthController.getHealth);

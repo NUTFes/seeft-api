@@ -1,13 +1,12 @@
 import 'package:shelf/shelf.dart';
 
 class StatusResponse {
-
   final corsHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Origin, Content-Type'
   };
-  
+
   Response responseOK(dynamic body) {
     return Response(
       200,
@@ -49,6 +48,4 @@ class StatusResponse {
       },
     );
   }
-
-
 }

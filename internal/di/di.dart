@@ -7,7 +7,7 @@ import '../interface/repository/user_repository.dart';
 import '../usecase/user_usecase.dart';
 import '../config/http_status.dart';
 
-initializeServer() async{
+initializeServer() async {
   final statusResponse = StatusResponse();
   final database = Mysql();
   await database.connect();

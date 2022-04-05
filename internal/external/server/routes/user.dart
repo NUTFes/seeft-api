@@ -5,7 +5,7 @@ class UserApi {
   var controller;
 
   UserApi(this.controller);
-  
+
   Router get router {
     final router = Router();
     print("user router's controller is ${controller.runtimeType}");

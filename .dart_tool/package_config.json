@@ -2,6 +2,18 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "_fe_analyzer_shared",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/_fe_analyzer_shared-38.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "analyzer",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/analyzer-3.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "args",
       "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/args-2.3.0",
       "packageUri": "lib/",
@@ -32,10 +44,28 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "convert",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/convert-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "file",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/file-6.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "glob",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/glob-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "http_methods",
@@ -80,6 +110,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "package_config",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/package_config-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/path-1.8.1",
       "packageUri": "lib/",
@@ -88,6 +124,12 @@
     {
       "name": "pool",
       "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/pool-1.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "pub_semver",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/pub_semver-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -140,13 +182,25 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "watcher",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/watcher-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "yaml",
+      "rootUri": "file:///Users/toshichika-mashimo/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "app",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     }
   ],
-  "generated": "2022-04-03T10:32:33.670108Z",
+  "generated": "2022-04-05T12:51:56.182677Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }

@@ -1,19 +1,9 @@
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+# FIles and directories created by pub.
+.dart_tool/
+.packages
 
-# Test binary, built with `go test =c`
-*.test
-
-#Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-
-# Go
-vendor
-app/tmp/*
+# Conventional directory for build outpu.
+build/
 
 # env
 *.env
