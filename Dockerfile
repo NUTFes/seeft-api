@@ -1,10 +1,11 @@
-FROM golang:1.16.3
+FROM dart:stable
 
-ENV GO111MODULE=on
-ENV GOPATH=/go
+WORKDIR /app
+COPY pubspec.* ./
+RUN dart pub get
 
-WORKDIR /go/src/github.com/NUTFes/seeft
+COPY . .
 
-RUN go get github.com/cosmtrek/air
+EXPOSE 8080
 
-CMD air
+CMD ["dart", "run"]

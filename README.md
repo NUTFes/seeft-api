@@ -1,33 +1,37 @@
-# SeeFT
+# SeeFT-API
 
-# Features
+## Features
 
-# Requiremnt
-- make
-- Docker
+## Requirement
+`production`
+- dart
+- docker
 
-# Installation
-```
-$ make build
-$ make vendor
-$ make exec
-# cd migration
-# go run migration.go up
-# cd ../seed
-# go run seed.go
-```
+`dev`
+- mysqldef
+but run `./scripts/script.sh`
 
-# Usage
-```
-$ make up
-```
 
-# Note
-プロキシ環境で実行できなかった場合は以下のように`make`を変更すること
-```
-$ make -f proxy.mk
+## Run
+
+``` fish
+$ docker-compose build
+$ docker-comopose up -d
+$ ./scripts/script.sh
+$ ./sql/migrate.sh
+$ dart run
 ```
 
-# Author
-- NUTMEG (技大祭実行委員会情報局)
-- nutfes.info [at] gmail.com
+## Usage
+
+## Note
+.shスクリプトが動かない場合以下のコマンドを実行すること
+
+```
+chmod u+x ./scripts/script.sh
+chmod u+x ./sql/migrate.sh
+```
+
+## Author
+NUTMEG（技大祭実行委員会情報局）
+mail: nutfes.info [at] gmail
