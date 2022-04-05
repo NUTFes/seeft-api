@@ -12,7 +12,7 @@ $ make build
 $ make vendor
 $ make exec
 # cd migration
-# go run migraion.go up
+# go run migration.go up
 # cd ../seed
 # go run seed.go
 ```
