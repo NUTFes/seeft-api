@@ -5,13 +5,12 @@ import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'router.dart';
 
 class Server {
-
   var server;
   var service;
 
   Server(this.service);
-  
-  run() async{
+
+  run() async {
     final handler = _handler();
     final server = await shelf_io.serve(handler, 'localhost', 3000);
     this.server = server;

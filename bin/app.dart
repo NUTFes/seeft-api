@@ -7,4 +7,3 @@ void main() async {
   await server.run();
   print(server.server.runtimeType);
 }
-

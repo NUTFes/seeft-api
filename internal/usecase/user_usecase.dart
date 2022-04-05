@@ -3,7 +3,7 @@ import './repository/user_repository.dart';
 
 class UserUsecase {
   UserRepository userRepository;
-  
+
   UserUsecase(this.userRepository);
 
   Future<List<User>> getUsers(ctx) async {
@@ -11,7 +11,7 @@ class UserUsecase {
     print(users);
     return users;
   }
-  
+
   Future<User> getUser(ctx, int id) async {
     User user = await userRepository.getUser(ctx, id);
     return user;
@@ -39,5 +39,4 @@ class UserUsecase {
     User user = await userRepository.deleteUser(ctx, req);
     return user;
   }
-
 }

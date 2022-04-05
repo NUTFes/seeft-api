@@ -7,21 +7,18 @@ class User {
 
   User(
     this.id,
-    this.name,
-    [
-      this.createdAt = '',
-      this.updatedAt = '',
-      this.deletedAt = '',
-    ]
-  );
+    this.name, [
+    this.createdAt = '',
+    this.updatedAt = '',
+    this.deletedAt = '',
+  ]);
 
   bool get isDeleted => deletedAt != 'null';
 
   Map<String, dynamic> get toMap => {
-    'id': id,
-    'name': name,
-    'created_at': createdAt,
-    'updated_at': updatedAt,
-  };
-
+        'id': id,
+        'name': name,
+        'created_at': createdAt,
+        'updated_at': updatedAt,
+      };
 }

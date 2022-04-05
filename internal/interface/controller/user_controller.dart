@@ -8,47 +8,44 @@ class UserController {
   var userUsecase;
 
   UserController(this.statusResponse, this.userUsecase);
-  
-  getUser(Request request, String id) async{
+
+  getUser(Request request, String id) async {
     try {
       User user = await userUsecase.getUser(request.context, int.parse(id));
       var json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
-      
-    } on Exception catch(e, st) {
+    } on Exception catch (e, st) {
       print(e);
       //      print(st);
       print(e.runtimeType);
       var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);
-    } on Error catch(e, st) {
+    } on Error catch (e, st) {
       print(e.runtimeType);
       var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);
-
     }
   }
 
-  getUsers(Request request) async{
+  getUsers(Request request) async {
     try {
       List<User> users = await userUsecase.getUsers(request.context);
 
       List<Map> list = [];
       users.forEach((user) {
-          list.add(user.toMap);
+        list.add(user.toMap);
       });
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
-      
+
       //    } on Exception catch(e, st) {
-    } catch(e, st) {
+    } catch (e, st) {
       print(e);
       //      print(st);
       var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);
     }
   }
-
 
   insertUser(Request request) async {
     try {
@@ -64,9 +61,9 @@ class UserController {
       var json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
       //    } on Exception catch(e, st) {
-    } catch(e, st) {
+    } catch (e, st) {
       print(e);
-      var json = jsonEncode({"message": e.toString()});      
+      var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);
     }
   }
@@ -79,7 +76,7 @@ class UserController {
       if (params['id'] == null) {
         throw Exception('id params does not exist');
       }
-      
+
       if (params['name'] == null) {
         throw Exception('name params does not exist');
       }
@@ -89,7 +86,7 @@ class UserController {
       String json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
       //    } on Exception catch(e, st) {
-    } catch(e, st) {
+    } catch (e, st) {
       print(e);
       var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);
@@ -107,7 +104,7 @@ class UserController {
       String json = jsonEncode(map);
       return statusResponse.responseOK(json);
       //    } on Exception catch(e, st) {
-    } catch(e, st) {
+    } catch (e, st) {
       print(e);
       var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);

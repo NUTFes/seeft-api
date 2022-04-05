@@ -4,19 +4,13 @@ import 'package:mysql1/mysql1.dart';
 import '../../entity/user.dart';
 import '../../interface/repository/external/database.dart';
 
-class Mysql implements Database{
+class Mysql implements Database {
   var conn;
 
   Mysql();
 
-  Future<void> connect() async{
-    var settings = new ConnectionSettings(
-      host: 'localhost',
-      port: 3306,
-      user: 'mysql',
-      password: 'pwd',
-      db: 'seeft'
-    );
+  Future<void> connect() async {
+    var settings = new ConnectionSettings(host: 'localhost', port: 3306, user: 'mysql', password: 'pwd', db: 'seeft');
     this.conn = await MySqlConnection.connect(settings);
   }
 
@@ -29,23 +23,23 @@ class Mysql implements Database{
       if (resultsList.length == 0) {
         throw Exception("Bad state: No element");
       }
-    
+
       resultsList.forEach((result) {
-          list.add(result.fields);
+        list.add(result.fields);
       });
 
       return list;
-    } catch(e) {
+    } catch (e) {
       throw Exception(e);
     }
   }
 
-  Future<Map<String, dynamic>> single(ctx, sql) async{
+  Future<Map<String, dynamic>> single(ctx, sql) async {
     try {
       var result = await this.conn.query(sql);
       var data = result.first.fields;
       return data;
-    }catch (e) {
+    } catch (e) {
       throw Exception(e);
     }
   }
@@ -55,10 +49,9 @@ class Mysql implements Database{
       var result = await conn.query(sql);
       var data = result.first.fields;
       return data;
-    }catch (e) {
+    } catch (e) {
       throw Exception(e);
     }
-
   }
 
   Future<Map<String, dynamic>> update(ctx, sql, getSQL) async {
@@ -70,6 +63,5 @@ class Mysql implements Database{
     } catch (e) {
       throw Exception(e);
     }
-    
   }
 }

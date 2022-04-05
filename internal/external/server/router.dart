@@ -20,7 +20,7 @@ class Service {
 
     print(userController.runtimeType);
     router.get('/', (Request request) {
-        return Response.ok('Get request');
+      return Response.ok('Get request');
     });
 
     router.get('/healthz', healthController.getHealth);
