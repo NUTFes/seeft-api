@@ -16,6 +16,8 @@ class UserController {
         throw Exception('this user is deleted.');
       }
 
+      return;
+
       var json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
     } on Exception catch (e, st) {

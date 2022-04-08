@@ -1,11 +1,14 @@
-import 'package:shelf_hotreload/shelf_hotreload.dart';
+import 'package:hotreloader/hotreloader.dart';
 
 import '../internal/di/di.dart';
 
 void main() async {
+  final reloader = await HotReloader.create(
+      onBeforeReload: (ctx) => ctx.event?.path.contains('/myapp/') ?? true,
+      onAfterReload: (ctx) => print('Hot-reload result: ${ctx.result}'));
+
   final server = await initializeServer();
 
-  //  withHotreload( () => server.run());
   await server.run();
   print(server.server.runtimeType);
 }

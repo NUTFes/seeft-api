@@ -79,7 +79,7 @@ packages:
     source: hosted
     version: "2.0.2"
   hotreloader:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: hotreloader
       url: "https://pub.dartlang.org"
@@ -169,13 +169,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  shelf_hotreload:
-    dependency: "direct main"
-    description:
-      name: shelf_hotreload
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
   shelf_router:
     dependency: "direct main"
     description:
