@@ -12,7 +12,7 @@ class Server {
 
   run() async {
     final handler = _handler();
-    final server = await shelf_io.serve(handler, 'localhost', 3000);
+    final server = await shelf_io.serve(handler, '0.0.0.0', 3000);
     this.server = server;
     print('Server runnning on localhost:${server.port}');
   }

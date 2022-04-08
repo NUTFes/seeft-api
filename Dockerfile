@@ -1,11 +1,12 @@
 FROM dart:stable
 
-WORKDIR /app
-COPY pubspec.* ./
-RUN dart pub get
+RUN apt update
 
+WORKDIR /myapp
 COPY . .
+RUN dart pub get
+RUN dart pub get --offline
 
-EXPOSE 8080
+EXPOSE 3000
 
-CMD ["dart", "run"]
+CMD ["dart", "pub", "run"]

@@ -7,3 +7,10 @@ build/
 
 # env
 *.env
+*.envrc
+
+# mac
+.DS_Store
+
+# db
+mariadb/
