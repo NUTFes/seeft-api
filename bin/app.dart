@@ -1,8 +1,10 @@
 import 'package:hotreloader/hotreloader.dart';
 
 import '../internal/di/di.dart';
+import '../internal/config/logger.dart';
 
 void main() async {
+  loggerSetup();
   final reloader = await HotReloader.create(
       onBeforeReload: (ctx) => ctx.event?.path.contains('/myapp/') ?? true,
       onAfterReload: (ctx) => print('Hot-reload result: ${ctx.result}'));
@@ -10,5 +12,5 @@ void main() async {
   final server = await initializeServer();
 
   await server.run();
-  print(server.server.runtimeType);
+  log.warning(server.server.runtimeType);
 }

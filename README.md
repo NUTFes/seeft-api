@@ -28,7 +28,20 @@ $ docker compose run --rm server dart ./sql/sql.dart seed
 $ docker compose up
 ```
 
+### logを表示させたい時
+
+``` fish
+$ docker compose up -d
+$ docker logs SeeFT-API -f
+```
+
 ## Note
+### プルリクでFormatterが失敗した時
+
+``` fish
+$ docker compose run --rm server dart format ./ -l 120 --set-exit-if-changed
+```
+
 ### .shスクリプトが動かない場合
 
 ```
