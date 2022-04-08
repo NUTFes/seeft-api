@@ -12,24 +12,34 @@
 but run `./scripts/script.sh`
 
 
-## Run
+## Installation
 
 ``` fish
-$ docker-compose build
-$ docker-comopose up -d
+$ docker compose build
+$ docker comopose up -d
 $ ./scripts/script.sh
 $ ./sql/migrate.sh
-$ dart run
+$ docker compose run --rm server dart ./sql/sql.dart seed
 ```
 
 ## Usage
 
+``` fish
+$ docker compose up
+```
+
 ## Note
-.shスクリプトが動かない場合以下のコマンドを実行すること
+### .shスクリプトが動かない場合
 
 ```
-chmod u+x ./scripts/script.sh
-chmod u+x ./sql/migrate.sh
+$ chmod u+x ./scripts/script.sh
+$ chmod u+x ./sql/migrate.sh
+```
+
+### docker-compose upでAPIが経たない時
+
+```
+$ docker compose run --rm server dart pub get
 ```
 
 ## Author

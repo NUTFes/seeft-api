@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:args/args.dart';
 import 'package:intl/intl.dart';
+import 'package:mysql1/mysql1.dart';
 
 void main(List<String> args) async {
   print(args);
@@ -13,6 +14,8 @@ void main(List<String> args) async {
   // parser.addFlag('mode', abbr: 'm');
 
   // parser.Commandでmigrateと作成をわける
+  var seedCommand = parser.addCommand('seed');
+
   var newCommand = parser.addCommand('new');
   newCommand.addOption('model', abbr: 'm');
 
@@ -25,9 +28,25 @@ void main(List<String> args) async {
 
   if (results.command?.name == "new") {
     run(results.command?['model']);
+  } else if (results.command?.name == 'seed') {
+    seed();
   } else {
     print("Not Found Option.");
   }
+}
+
+seed() async {
+  final ConnectionSettings settings = new ConnectionSettings(host: 'db', user: 'mysql', password: 'pwd', db: 'seeft');
+  var conn = await MySqlConnection.connect(settings);
+
+  String file = await File('/myapp/sql/seed.sql').readAsString();
+  List<String> sqls = file.split(';');
+  sqls.removeLast();
+  sqls.forEach((String sql) async {
+    await conn.query(sql + ';');
+  });
+  await conn.close();
+  print('finish');
 }
 
 run(name) {

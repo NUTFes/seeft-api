@@ -6,9 +6,11 @@ if [ -d $DIR ]; then
 fi
 
 for file in `\find . -maxdepth 1 -type f`; do
-    if [ `echo $file | grep '\.sql'` ]; then
-           echo $file
-           mysqldef seeft -u mysql -p pwd --skip-drop < $file
+    if [ $file == './seed.sql' ]; then
+        cat seed.sql
+#        echo $file
+    elif [ `echo $file | grep '\.sql'` ]; then
+        echo $file
+        mysqldef seeft -u mysql -p pwd --skip-drop < $file
     fi
 done
-

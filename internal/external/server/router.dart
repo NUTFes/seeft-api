@@ -17,16 +17,17 @@ class Service {
   Handler get handler {
     final router = Router();
 
-    print(userController.runtimeType);
     router.get('/', (Request request) {
       return Response.ok('Get request');
     });
 
     router.get('/healthz', healthController.getHealth);
 
-    router.mount('/api', Api().router);
+    router.mount('/users', UserApi(userController).router);
 
-    router.mount('/user', UserApi(userController).router);
+    router.all('/<ignored|.*>', (Request request) {
+      return Response.notFound('Page not found');
+    });
 
     return router;
   }

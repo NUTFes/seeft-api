@@ -9,22 +9,26 @@ class UserRepositoryImpl implements UserRepository {
 
   Future<List<User>> getUsers(ctx) async {
     String sql = '''
-SELECT * FROM users WHERE deleted_at IS NULL;
+SELECT * FROM users;
 ''';
 
     List<Map<String, dynamic>> data = await database.get(ctx, sql);
     List<User> list = [];
 
     data.forEach((d) {
-      list.add(
-        User(
-          d['id'],
-          d['name'],
-          d['created_at'].toString(),
-          d['updated_at'].toString(),
-          d['deleted_at'].toString(),
-        ),
+      User user = User(
+        d['id'],
+        d['name'],
+        d['bureau_id'],
+        d['grade_id'],
+        d['created_at'].toString(),
+        d['updated_at'].toString(),
+        d['deleted_at'].toString(),
       );
+
+      if (!user.isDeleted) {
+        list.add(user);
+      }
     });
 
     return list;
@@ -32,18 +36,18 @@ SELECT * FROM users WHERE deleted_at IS NULL;
 
   Future<User> getUser(ctx, id) async {
     String sql = '''
-SELECT * FROM users WHERE id=${id} AND deleted_at IS NULL;
+SELECT * FROM users WHERE id=${id};
 ''';
     var data = await database.single(ctx, sql);
 
-    User user = User(data['id'], data['name'], data['created_at'].toString(), data['updated_at'].toString(),
-        data['deleted_at'].toString());
+    User user = User(data['id'], data['name'], data['bureau_id'], data['grade_id'], data['created_at'].toString(),
+        data['updated_at'].toString(), data['deleted_at'].toString());
     return user;
   }
 
-  Future<User> insertUser(ctx, name) async {
+  Future<User> insertUser(ctx, name, bureauId, gradeId) async {
     String sql = '''
-INSERT INTO users (name) VALUES ("$name") returning *;
+INSERT INTO users (name, bureau_id, grade_id) VALUES ("$name", "$bureauId", "$gradeId") returning *;
 ''';
 
     var data = await database.insert(ctx, sql);
@@ -51,8 +55,8 @@ INSERT INTO users (name) VALUES ("$name") returning *;
       print("error at UserRepository.insertUser");
     }
 
-    User user = User(data["id"], data["name"], data["created_at"].toString(), data["updated_at"].toString(),
-        data["deleted_at"].toString());
+    User user = User(data["id"], data["name"], data["bureau_id"], data["grade_id"], data["created_at"].toString(),
+        data["updated_at"].toString(), data["deleted_at"].toString());
     return user;
   }
 
@@ -65,8 +69,8 @@ SELECT * FROM users WHERE id=${user.id};
 ''';
 
     var data = await database.update(ctx, sql, returningSQL);
-    User resultUser = User(data["id"], data["name"], data["created_at"].toString(), data["updated_at"].toString(),
-        data["deleted_at"].toString());
+    User resultUser = User(data['id'], data['name'], data['bureau_id'], data['grade_id'], data['created_at'].toString(),
+        data['updated_at'].toString(), data['deleted_at'].toString());
     return resultUser;
   }
 
@@ -79,8 +83,8 @@ SELECT * FROM users WHERE id=${user.id};
 ''';
 
     var data = await database.update(ctx, sql, returningSQL);
-    User resultUser = User(data["id"], data["name"], data["created_at"].toString(), data["updated_at"].toString(),
-        data["deleted_at"].toString());
+    User resultUser = User(data['id'], data['name'], data['bureau_id'], data['grade_id'], data['created_at'].toString(),
+        data['updated_at'].toString(), data['deleted_at'].toString());
     return resultUser;
   }
 }
