@@ -15,7 +15,7 @@ void main(List<String> args) async {
 
   // parser.Commandでmigrateと作成をわける
   var seedCommand = parser.addCommand('seed');
-  
+
   var newCommand = parser.addCommand('new');
   newCommand.addOption('model', abbr: 'm');
 
@@ -36,19 +36,17 @@ void main(List<String> args) async {
 }
 
 seed() async {
-  final ConnectionSettings settings =
-    new ConnectionSettings(host: 'db', user: 'mysql', password: 'pwd', db: 'seeft');
+  final ConnectionSettings settings = new ConnectionSettings(host: 'db', user: 'mysql', password: 'pwd', db: 'seeft');
   var conn = await MySqlConnection.connect(settings);
 
   String file = await File('/myapp/sql/seed.sql').readAsString();
   List<String> sqls = file.split(';');
   sqls.removeLast();
-  sqls.forEach((String sql) async{
-    await conn.query(sql + ';');  
+  sqls.forEach((String sql) async {
+    await conn.query(sql + ';');
   });
   await conn.close();
   print('finish');
-
 }
 
 run(name) {

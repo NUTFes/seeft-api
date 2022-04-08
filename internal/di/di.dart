@@ -9,7 +9,7 @@ import '../config/http_status.dart';
 
 initializeServer() async {
   final statusResponse = StatusResponse();
-/*  final database = Mysql();
+  final database = Mysql();
   await database.connect();
 
   final userRepository = UserRepositoryImpl(database);
@@ -20,9 +20,6 @@ initializeServer() async {
   final userController = UserController(statusResponse, userUsecase);
 
   final service = Service(healthController, userController);
-  */
-  final healthController = HealthController();
-  final service = Service(healthController);
   final server = Server(service);
 
   return server;

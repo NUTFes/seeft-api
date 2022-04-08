@@ -7,11 +7,11 @@ import '../../interface/controller/health_controller.dart';
 
 class Service {
   var healthController;
-//  var userController;
+  var userController;
 
   Service(
     this.healthController,
-//    this.userController,
+    this.userController,
   );
 
   Handler get handler {
@@ -23,14 +23,12 @@ class Service {
 
     router.get('/healthz', healthController.getHealth);
 
-    router.mount('/api', Api().router);
-
-//    router.mount('/user', UserApi(userController).router);
+    router.mount('/users', UserApi(userController).router);
 
     router.all('/<ignored|.*>', (Request request) {
-        return Response.notFound('Page not found');
+      return Response.notFound('Page not found');
     });
-    
+
     return router;
   }
 }

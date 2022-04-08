@@ -17,8 +17,8 @@ class UserUsecase {
     return user;
   }
 
-  Future<User> insertUser(ctx, String name) async {
-    User user = await userRepository.insertUser(ctx, name);
+  Future<User> insertUser(ctx, String name, int bureauId, int gradeId) async {
+    User user = await userRepository.insertUser(ctx, name, bureauId, gradeId);
     return user;
   }
 
