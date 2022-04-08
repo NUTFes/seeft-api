@@ -1,6 +1,6 @@
 # FIles and directories created by pub.
 .dart_tool/
-.packages
+# .packages
 
 # Conventional directory for build outpu.
 build/
