@@ -8,7 +8,6 @@ class UserUsecase {
 
   Future<List<User>> getUsers(ctx) async {
     List<User> users = await userRepository.getUsers(ctx);
-    print(users);
     return users;
   }
 

@@ -12,7 +12,7 @@ class UserRepositoryImpl implements UserRepository {
 SELECT * FROM users;
 ''';
 
-    List<Map<String, dynamic>> data = await database.get(ctx, sql);
+    List<Map<String, dynamic>> data = await database.select(ctx, sql);
     List<User> list = [];
 
     data.forEach((d) {
