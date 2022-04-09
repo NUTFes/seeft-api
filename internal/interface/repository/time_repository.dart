@@ -1,16 +1,33 @@
 import '../../usecase/repository/time_repository.dart';
 import '../../entity/export.dart';
+import './external/database.dart';
 
-class TimeRepositoryImpl implements TimeRepository{
+class TimeRepositoryImpl implements TimeRepository {
+  Database database;
 
-  TimeRepositoryImpl();
+  TimeRepositoryImpl(this.database);
 
-  List<Time> getTimes(ctx) {
+  Future<List<Time>> getTimes(ctx) async {
+    String sql = '''
+SELECT * FROM times;
+''';
+
+    List<Map<String, dynamic>> data = await database.select(ctx, sql);
     List<Time> list = [];
-    var time = Time(0, '1:00');
-    list.add(time);
-    list.add(time);
-    
+
+    data.forEach((d) {
+      Time user = Time(
+        d['id'],
+        d['time'],
+        d['created_at'].toString(),
+        d['updated_at'].toString(),
+        d['deleted_at'].toString(),
+      );
+
+      if (!user.isDeleted) {
+        list.add(user);
+      }
+    });
 
     return list;
   }

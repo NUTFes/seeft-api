@@ -13,7 +13,7 @@ class Mysql implements Database {
     conn = await MySqlConnection.connect(settings);
   }
 
-  Future<List<Map<String, dynamic>>> get(ctx, sql) async {
+  Future<List<Map<String, dynamic>>> select(ctx, sql) async {
     try {
       var results = await this.conn.query(sql);
       List resultsList = results.toList();

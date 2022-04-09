@@ -20,6 +20,6 @@ class Time {
         'time': time,
         'createdAt': createdAt,
         'updatedAt': updatedAt,
-        'deleted': isDeleted
+        'deleted': isDeleted,
       };
 }

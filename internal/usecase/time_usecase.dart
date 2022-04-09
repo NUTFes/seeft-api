@@ -6,9 +6,9 @@ class TimeUsecase {
 
   TimeUsecase(this.timeRepository);
 
-  List<Time> getTimes(ctx) {
-    var list = timeRepository.getTimes(ctx);
-    
+  Future<List<Time>> getTimes(ctx) async {
+    List<Time> list = await timeRepository.getTimes(ctx);
+
     return list;
   }
 }

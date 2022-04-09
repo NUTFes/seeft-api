@@ -16,7 +16,7 @@ initializeServer() async {
   await database.connect();
 
   final userRepository = UserRepositoryImpl(database);
-  final timeRepositoty = TimeRepositoryImpl();
+  final timeRepositoty = TimeRepositoryImpl(database);
 
   final userUsecase = UserUsecase(userRepository);
   final timeUsecase = TimeUsecase(timeRepositoty);
@@ -24,7 +24,7 @@ initializeServer() async {
   final healthController = HealthController();
   final userController = UserController(statusResponse, userUsecase);
   final timeController = TimeController(statusResponse, timeUsecase);
-  
+
   final service = Service(healthController, userController, timeController);
   final server = Server(service);
 

@@ -14,7 +14,7 @@ class TimeController {
 
   getTimes(Request request) async {
     try {
-      List<Time> times = timeUsecase.getTimes(request.context);
+      List<Time> times = await timeUsecase.getTimes(request.context);
 
       List<Map> list = [];
       times.forEach((time) {
@@ -23,7 +23,6 @@ class TimeController {
 
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
-
     } catch (e, st) {
       print(e);
       //      print(st);
