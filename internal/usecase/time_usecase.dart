@@ -1,16 +1,14 @@
 import '../entity/export.dart';
-//import './repository/time_repository.dart';
+import './repository/time_repository.dart';
 
 class TimeUsecase {
-//  UserRepository userRepository;
+  TimeRepository timeRepository;
 
-  TimeUsecase();
+  TimeUsecase(this.timeRepository);
 
   List<Time> getTimes(ctx) {
-    List<Time> list = [];
-    var time = Time(0, '1:00');
-    list.add(time);    
-
+    var list = timeRepository.getTimes(ctx);
+    
     return list;
   }
 }
