@@ -5,22 +5,22 @@ import '../../entity/export.dart';
 
 class TimeController {
   var statusResponse;
+  var timeUsecase;
 
-  TimeController(this.statusResponse);
+  TimeController(
+    this.statusResponse,
+    this.timeUsecase,
+  );
 
   getTimes(Request request) async {
     try {
-/*      List<User> users = await userUsecase.getUsers(request.context);
+      List<Time> times = timeUsecase.getTimes(request.context);
 
       List<Map> list = [];
-      users.forEach((user) {
-        list.add(user.toMap);
+      times.forEach((time) {
+        list.add(time.toMap);
       });
-          */
 
-      List<Map> list = [];
-      var time = Time(0, '1:00');
-      list.add(time.toMap);    
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
 
