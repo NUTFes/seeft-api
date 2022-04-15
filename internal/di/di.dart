@@ -4,6 +4,7 @@ import '../external/mysql/mysql.dart';
 import '../interface/controller/health_controller.dart';
 import '../interface/controller/user_controller.dart';
 import '../interface/controller/time_controller.dart';
+import '../interface/controller/bureau_controller.dart';
 import '../interface/repository/user_repository.dart';
 import '../interface/repository/time_repository.dart';
 import '../usecase/user_usecase.dart';
@@ -24,8 +25,9 @@ initializeServer() async {
   final healthController = HealthController();
   final userController = UserController(statusResponse, userUsecase);
   final timeController = TimeController(statusResponse, timeUsecase);
+  final bureauController = BureauController(statusResponse);
 
-  final service = Service(healthController, userController, timeController);
+  final service = Service(healthController, userController, timeController, bureauController,);
   final server = Server(service);
 
   return server;
