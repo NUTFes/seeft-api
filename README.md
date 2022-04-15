@@ -55,6 +55,9 @@ $ chmod u+x ./sql/migrate.sh
 $ docker compose run --rm server dart pub get
 ```
 
+### diを編集してからうまく動かないとき
+一度コンテナをdownさせてからupし直してみてください。
+
 ## Author
 NUTMEG（技大祭実行委員会情報局）
 mail: nutfes.info [at] gmail

@@ -9,6 +9,7 @@ import '../interface/repository/user_repository.dart';
 import '../interface/repository/time_repository.dart';
 import '../usecase/user_usecase.dart';
 import '../usecase/time_usecase.dart';
+import '../usecase/bureau_usecase.dart';
 import '../config/http_status.dart';
 
 initializeServer() async {
@@ -21,13 +22,19 @@ initializeServer() async {
 
   final userUsecase = UserUsecase(userRepository);
   final timeUsecase = TimeUsecase(timeRepositoty);
+  final bureauUsecase = BureauUsecase();
 
   final healthController = HealthController();
   final userController = UserController(statusResponse, userUsecase);
   final timeController = TimeController(statusResponse, timeUsecase);
-  final bureauController = BureauController(statusResponse);
+  final bureauController = BureauController(statusResponse, bureauUsecase);
 
-  final service = Service(healthController, userController, timeController, bureauController,);
+  final service = Service(
+    healthController,
+    userController,
+    timeController,
+    bureauController,
+  );
   final server = Server(service);
 
   return server;

@@ -1,38 +1,35 @@
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
 
+import '../../config/logger.dart';
 import '../../entity/export.dart';
 
 class BureauController {
   var statusResponse;
-//  var timeUsecase;
+  var bureauUsecase;
 
   BureauController(
     this.statusResponse,
-//    this.timeUsecase,
+    this.bureauUsecase,
   );
 
   getBureaus(Request request) {
     try {
-/*      List<Time> bureaus = [];
-
+      List<Bureau> bureaus = bureauUsecase.getBureaus(request.context);
+      Log.info('bureaus');
       List<Map> list = [];
-      times.forEach((time) {
-        list.add(time.toMap);
+      bureaus.forEach((bureau) {
+        list.add(bureau.toMap);
       });
-          */
 
-      final bureau = Bureau(0, 'bureau', '#000000');
-      List<Map> list = [];
-      list.add(bureau.toMap);
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
     } catch (e, st) {
+      Log.severe("BureauController.getBureaus: " + e.toString());
       print(e);
       //      print(st);
       var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);
     }
   }
-
 }
