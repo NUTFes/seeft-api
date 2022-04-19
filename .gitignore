@@ -1,5 +1,6 @@
 # FIles and directories created by pub.
 .dart_tool/
+## dockerを使用するときにこれがないと死ぬ
 # .packages
 
 # Conventional directory for build outpu.
