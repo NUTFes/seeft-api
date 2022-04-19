@@ -1,20 +1,14 @@
 import '../config/logger.dart';
 import '../entity/export.dart';
-//import './repository/bureau_repository.dart';
+import './repository/bureau_repository.dart';
 
 class BureauUsecase {
-//  BureauRepository bureauRepository;
+  BureauRepository bureauRepository;
 
-//  BureauUsecase(this.bureauRepository);
-  BureauUsecase();
+  BureauUsecase(this.bureauRepository);
 
-  List<Bureau> getBureaus(ctx) {
-//    List<Time> list = await timeRepository.getTimes(ctx);
-    Bureau bureau = Bureau(0, 'bureau', '#000000');
-    List<Bureau> list = [];
-    list.add(bureau);
-
-    Log.info(bureau);
+  Future<List<Bureau>> getBureaus(ctx) async {
+    List<Bureau> list = await bureauRepository.getBureaus(ctx);
 
     return list;
   }

@@ -13,9 +13,9 @@ class BureauController {
     this.bureauUsecase,
   );
 
-  getBureaus(Request request) {
+  getBureaus(Request request) async {
     try {
-      List<Bureau> bureaus = bureauUsecase.getBureaus(request.context);
+      List<Bureau> bureaus = await bureauUsecase.getBureaus(request.context);
       Log.info('bureaus');
       List<Map> list = [];
       bureaus.forEach((bureau) {

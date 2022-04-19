@@ -7,6 +7,7 @@ import '../interface/controller/time_controller.dart';
 import '../interface/controller/bureau_controller.dart';
 import '../interface/repository/user_repository.dart';
 import '../interface/repository/time_repository.dart';
+import '../interface/repository/bureau_repository.dart';
 import '../usecase/user_usecase.dart';
 import '../usecase/time_usecase.dart';
 import '../usecase/bureau_usecase.dart';
@@ -19,10 +20,11 @@ initializeServer() async {
 
   final userRepository = UserRepositoryImpl(database);
   final timeRepositoty = TimeRepositoryImpl(database);
+  final bureauRepository = BureauRepositoryImpl(database);
 
   final userUsecase = UserUsecase(userRepository);
   final timeUsecase = TimeUsecase(timeRepositoty);
-  final bureauUsecase = BureauUsecase();
+  final bureauUsecase = BureauUsecase(bureauRepository);
 
   final healthController = HealthController();
   final userController = UserController(statusResponse, userUsecase);
