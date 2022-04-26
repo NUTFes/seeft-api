@@ -17,12 +17,12 @@ SELECT * FROM bureaus;
 
     data.forEach((d) {
       Bureau bureau = Bureau(
-        d['id'],
-        d['bureau'],
-        Color(int.parse(d['color'], radix: 16)),
-        d['created_at'].toString(),
-        d['updated_at'].toString(),
-        d['deleted_at'].toString(),
+        id: d['id'],
+        bureau: d['bureau'],
+        color: Color(int.parse(d['color'], radix: 16)),
+        createdAt: d['created_at'].toString(),
+        updatedAt: d['updated_at'].toString(),
+        deletedAt: d['deleted_at'].toString(),
       );
 
       if (!bureau.isDeleted) {

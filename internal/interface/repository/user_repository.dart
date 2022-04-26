@@ -17,13 +17,13 @@ SELECT * FROM users;
 
     data.forEach((d) {
       User user = User(
-        d['id'],
-        d['name'],
-        d['bureau_id'],
-        d['grade_id'],
-        d['created_at'].toString(),
-        d['updated_at'].toString(),
-        d['deleted_at'].toString(),
+        id: d['id'],
+        name: d['name'],
+        bureauId: d['bureau_id'],
+        gradeId: d['grade_id'],
+        createdAt: d['created_at'].toString(),
+        updatedAt: d['updated_at'].toString(),
+        deletedAt: d['deleted_at'].toString(),
       );
 
       if (!user.isDeleted) {
@@ -40,14 +40,21 @@ SELECT * FROM users WHERE id=${id};
 ''';
     var data = await database.single(ctx, sql);
 
-    User user = User(data['id'], data['name'], data['bureau_id'], data['grade_id'], data['created_at'].toString(),
-        data['updated_at'].toString(), data['deleted_at'].toString());
+    User user = User(
+      id: data['id'],
+      name: data['name'],
+      bureauId: data['bureau_id'],
+      gradeId: data['grade_id'],
+      createdAt: data['created_at'].toString(),
+      updatedAt: data['updated_at'].toString(),
+      deletedAt: data['deleted_at'].toString(),
+    );
     return user;
   }
 
-  Future<User> insertUser(ctx, name, bureauId, gradeId) async {
+  Future<User> insertUser(ctx, User req) async {
     String sql = '''
-INSERT INTO users (name, bureau_id, grade_id) VALUES ("$name", "$bureauId", "$gradeId") returning *;
+INSERT INTO users (name, bureau_id, grade_id) VALUES ("${req.name}", "${req.bureauId}", "${req.gradeId}") returning *;
 ''';
 
     var data = await database.insert(ctx, sql);
@@ -55,12 +62,19 @@ INSERT INTO users (name, bureau_id, grade_id) VALUES ("$name", "$bureauId", "$gr
       print("error at UserRepository.insertUser");
     }
 
-    User user = User(data["id"], data["name"], data["bureau_id"], data["grade_id"], data["created_at"].toString(),
-        data["updated_at"].toString(), data["deleted_at"].toString());
+    User user = User(
+      id: data['id'],
+      name: data['name'],
+      bureauId: data['bureau_id'],
+      gradeId: data['grade_id'],
+      createdAt: data['created_at'].toString(),
+      updatedAt: data['updated_at'].toString(),
+      deletedAt: data['deleted_at'].toString(),
+    );
     return user;
   }
 
-  Future<User> updateUser(ctx, user) async {
+  Future<User> updateUser(ctx, User user) async {
     String sql = '''
 UPDATE users SET name="${user.name}" WHERE id=${user.id};
 ''';
@@ -69,12 +83,19 @@ SELECT * FROM users WHERE id=${user.id};
 ''';
 
     var data = await database.update(ctx, sql, returningSQL);
-    User resultUser = User(data['id'], data['name'], data['bureau_id'], data['grade_id'], data['created_at'].toString(),
-        data['updated_at'].toString(), data['deleted_at'].toString());
+    User resultUser = User(
+      id: data['id'],
+      name: data['name'],
+      bureauId: data['bureau_id'],
+      gradeId: data['grade_id'],
+      createdAt: data['created_at'].toString(),
+      updatedAt: data['updated_at'].toString(),
+      deletedAt: data['deleted_at'].toString(),
+    );
     return resultUser;
   }
 
-  Future<User> deleteUser(ctx, user) async {
+  Future<User> deleteUser(ctx, User user) async {
     String sql = '''
 UPDATE users SET deleted_at=NOW() WHERE id=${user.id};
 ''';
@@ -83,8 +104,15 @@ SELECT * FROM users WHERE id=${user.id};
 ''';
 
     var data = await database.update(ctx, sql, returningSQL);
-    User resultUser = User(data['id'], data['name'], data['bureau_id'], data['grade_id'], data['created_at'].toString(),
-        data['updated_at'].toString(), data['deleted_at'].toString());
+    User resultUser = User(
+      id: data['id'],
+      name: data['name'],
+      bureauId: data['bureau_id'],
+      gradeId: data['grade_id'],
+      createdAt: data['created_at'].toString(),
+      updatedAt: data['updated_at'].toString(),
+      deletedAt: data['deleted_at'].toString(),
+    );
     return resultUser;
   }
 }
