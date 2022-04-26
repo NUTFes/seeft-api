@@ -19,7 +19,7 @@ SELECT * FROM bureaus;
       Bureau bureau = Bureau(
         d['id'],
         d['bureau'],
-        d['color'],
+        Color(int.parse(d['color'], radix: 16)),
         d['created_at'].toString(),
         d['updated_at'].toString(),
         d['deleted_at'].toString(),

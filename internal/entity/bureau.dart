@@ -1,7 +1,9 @@
+import './color.dart';
+
 class Bureau {
   int id;
   String bureau;
-  String color;
+  Color color;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -20,7 +22,7 @@ class Bureau {
   Map<String, dynamic> get toMap => {
         'id': id,
         'bureau': bureau,
-        'color': color,
+        'color': color.toString(),
         'createdAt': createdAt,
         'updatedAt': updatedAt,
         'deleted': isDeleted,
