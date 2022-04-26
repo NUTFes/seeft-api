@@ -17,11 +17,11 @@ SELECT * FROM times;
 
     data.forEach((d) {
       Time user = Time(
-        d['id'],
-        d['time'],
-        d['created_at'].toString(),
-        d['updated_at'].toString(),
-        d['deleted_at'].toString(),
+        id: d['id'],
+        time: d['time'],
+        createdAt: d['created_at'].toString(),
+        updatedAt: d['updated_at'].toString(),
+        deletedAt: d['deleted_at'].toString(),
       );
 
       if (!user.isDeleted) {

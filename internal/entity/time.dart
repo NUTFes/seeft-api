@@ -5,13 +5,13 @@ class Time {
   String updatedAt;
   String deletedAt;
 
-  Time(
-    this.id,
-    this.time, [
+  Time({
+    this.id = 0,
+    this.time = '',
     this.createdAt = '',
     this.updatedAt = '',
     this.deletedAt = '',
-  ]);
+  });
 
   bool get isDeleted => deletedAt != 'null';
 

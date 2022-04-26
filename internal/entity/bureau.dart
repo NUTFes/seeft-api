@@ -8,14 +8,14 @@ class Bureau {
   String updatedAt;
   String deletedAt;
 
-  Bureau(
-    this.id,
-    this.bureau,
-    this.color, [
+  Bureau({
+    this.id = 0,
+    this.bureau = '',
+    this.color = const Color(0xFFFAFA),
     this.createdAt = '',
     this.updatedAt = '',
     this.deletedAt = '',
-  ]);
+  });
 
   bool get isDeleted => deletedAt != 'null';
 

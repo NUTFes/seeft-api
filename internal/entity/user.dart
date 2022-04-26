@@ -7,15 +7,15 @@ class User {
   String updatedAt;
   String deletedAt;
 
-  User(
-    this.id,
-    this.name,
-    this.bureauId,
-    this.gradeId, [
+  User({
+    this.id = 0,
+    this.name = '',
+    this.bureauId = 0,
+    this.gradeId = 0,
     this.createdAt = '',
     this.updatedAt = '',
     this.deletedAt = '',
-  ]);
+  });
 
   bool get isDeleted => deletedAt != 'null';
 

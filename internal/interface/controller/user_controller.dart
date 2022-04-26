@@ -70,7 +70,14 @@ class UserController {
         throw Exception('gradeId params does not exist.');
       }
 
-      User user = await userUsecase.insertUser(request.context, params["name"], params["bureauId"], params["gradeId"]);
+      User user = await userUsecase.insertUser(
+        request.context,
+        User(
+          name: params["name"],
+          bureauId: params["bureauId"],
+          gradeId: params["gradeId"],
+        ),
+      );
 
       var json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
@@ -100,7 +107,14 @@ class UserController {
       }
 
       User user = await userUsecase.updateUser(
-          request.context, User(params["id"], params["name"], params['bureauId'], params['gradeId']));
+        request.context,
+        User(
+          id: params["id"],
+          name: params["name"],
+          bureauId: params['bureauId'],
+          gradeId: params['gradeId'],
+        ),
+      );
 
       String json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
@@ -114,7 +128,7 @@ class UserController {
 
   deleteUser(Request request, String id) async {
     try {
-      User user = await userUsecase.deleteUser(request.context, User(int.parse(id), "", 0, 0));
+      User user = await userUsecase.deleteUser(request.context, User(id: int.parse(id)));
 
       Map map = {'success': user.isDeleted};
       String json = jsonEncode(map);
