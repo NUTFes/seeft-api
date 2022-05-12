@@ -32,7 +32,7 @@ void main() {
     expect(testUser.deletedAt, '2019/01/01 00:00:00');
   });
 
-  test('user.isDeleted',() {
+  test('user.isDeleted', () {
     final User user = User();
     expect(user.isDeleted, false);
 
