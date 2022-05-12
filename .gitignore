@@ -3,6 +3,9 @@
 ## dockerを使用するときにこれがないと死ぬ
 # .packages
 
+pubspec.lock
+build/
+
 # Conventional directory for build outpu.
 build/
 
