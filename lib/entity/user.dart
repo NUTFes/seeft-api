@@ -14,7 +14,7 @@ class User {
     this.gradeId = 0,
     this.createdAt = '',
     this.updatedAt = '',
-    this.deletedAt = '',
+    this.deletedAt = 'null',
   });
 
   bool get isDeleted => deletedAt != 'null';
@@ -26,6 +26,6 @@ class User {
         'gradeId': gradeId,
         'createdAt': createdAt,
         'updatedAt': updatedAt,
-        'deleted': isDeleted
+        'isDeleted': isDeleted
       };
 }

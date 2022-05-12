@@ -1,7 +1,7 @@
 import 'package:hotreloader/hotreloader.dart';
 
-import '../internal/di/di.dart';
-import '../internal/config/logger.dart';
+import './di/di.dart';
+import './config/logger.dart';
 
 void main() async {
   Log.setup();
