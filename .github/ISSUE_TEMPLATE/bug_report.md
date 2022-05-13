@@ -1,13 +1,13 @@
 ---
-name: Bug report
+name: BugFix report
 about: Create a report to help us improve
 title: ''
-labels: bug
+labels: bug, fix
 assignees: ''
 
 ---
 
-# バグ内容
+# 問題内容
 
 # バグ修正の達成条件
 
