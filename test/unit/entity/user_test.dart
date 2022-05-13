@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 
-import '../../../lib/entity/user.dart';
+import 'package:seeft_api/entity/user.dart';
 
 void main() {
   final User testUser = User(
