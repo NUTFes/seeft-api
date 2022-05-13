@@ -9,13 +9,13 @@ class UserRepositoryImpl implements UserRepository {
 
   Future<List<User>> getUsers(ctx) async {
     String sql = '''
-SELECT * FROM users;
-''';
+      SELECT * FROM users;
+    ''';
 
-    List<Map<String, dynamic>> data = await database.select(ctx, sql);
+    List<Map<String, dynamic>> data = await database.finds(ctx, sql);
     List<User> list = [];
 
-    data.forEach((d) {
+    for (var d in data) {
       User user = User(
         id: d['id'],
         name: d['name'],
@@ -26,10 +26,12 @@ SELECT * FROM users;
         deletedAt: d['deleted_at'].toString(),
       );
 
-      if (!user.isDeleted) {
-        list.add(user);
+      if (user.isDeleted) {
+        continue;
       }
-    });
+      list.add(user);
+    }
+    ;
 
     return list;
   }
@@ -38,7 +40,7 @@ SELECT * FROM users;
     String sql = '''
 SELECT * FROM users WHERE id=${id};
 ''';
-    var data = await database.single(ctx, sql);
+    Map<String, dynamic> data = await database.find(ctx, sql);
 
     User user = User(
       id: data['id'],
@@ -49,6 +51,7 @@ SELECT * FROM users WHERE id=${id};
       updatedAt: data['updated_at'].toString(),
       deletedAt: data['deleted_at'].toString(),
     );
+
     return user;
   }
 

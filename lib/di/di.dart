@@ -15,8 +15,8 @@ import '../config/http_status.dart';
 
 initializeServer() async {
   final statusResponse = StatusResponse();
-  final database = Mysql();
-  await database.connect();
+  final conn = await Mysql.connect();
+  final database = Mysql(conn);
 
   final userRepository = UserRepositoryImpl(database);
   final timeRepositoty = TimeRepositoryImpl(database);

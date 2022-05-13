@@ -12,7 +12,7 @@ class BureauRepositoryImpl implements BureauRepository {
 SELECT * FROM bureaus;
 ''';
 
-    List<Map<String, dynamic>> data = await database.select(ctx, sql);
+    List<Map<String, dynamic>> data = await database.finds(ctx, sql);
     List<Bureau> list = [];
 
     data.forEach((d) {

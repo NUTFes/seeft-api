@@ -12,7 +12,7 @@ class TimeRepositoryImpl implements TimeRepository {
 SELECT * FROM times;
 ''';
 
-    List<Map<String, dynamic>> data = await database.select(ctx, sql);
+    List<Map<String, dynamic>> data = await database.finds(ctx, sql);
     List<Time> list = [];
 
     data.forEach((d) {
