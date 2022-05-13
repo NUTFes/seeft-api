@@ -9,7 +9,10 @@ class UserController {
   StatusResponse statusResponse;
   UserUsecase userUsecase;
 
-  UserController(this.statusResponse, this.userUsecase,);
+  UserController(
+    this.statusResponse,
+    this.userUsecase,
+  );
 
   getUser(Request request, String id) async {
     try {
@@ -43,10 +46,9 @@ class UserController {
       for (var user in users) {
         list.add(user.toMap);
       }
-    
+
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
-
     } catch (e) {
       Log.severe('userContoller.getUsers: ' + e.toString());
       var json = jsonEncode({'message': e.toString()});
