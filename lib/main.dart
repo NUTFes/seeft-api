@@ -11,5 +11,4 @@ void main() async {
   final server = await initializeServer();
 
   await server.run();
-  Log.info(server.server.runtimeType);
 }

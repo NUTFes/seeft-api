@@ -1,5 +1,5 @@
 import '../external/server/server.dart';
-import '../external/server/router.dart';
+import '../external/server/service.dart';
 import '../external/mysql/mysql.dart';
 import '../interface/controller/health_controller.dart';
 import '../interface/controller/user_controller.dart';
