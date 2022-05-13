@@ -5,8 +5,7 @@ import './config/logger.dart';
 
 void main() async {
   Log.setup();
-  final reloader = await HotReloader.create(
-      onAfterReload: (ctx) => log.info('Hot-reload result: ${ctx.result}\n ${ctx.reloadReports}'));
+  await HotReloader.create(onAfterReload: (ctx) => log.info('Hot-reload result: ${ctx.result}\n ${ctx.reloadReports}'));
 
   final server = await initializeServer();
 
