@@ -1,5 +1,5 @@
 import '../external/server/server.dart';
-import '../external/server/router.dart';
+import '../external/server/service.dart';
 import '../external/mysql/mysql.dart';
 import '../interface/controller/health_controller.dart';
 import '../interface/controller/user_controller.dart';
@@ -15,8 +15,8 @@ import '../config/http_status.dart';
 
 initializeServer() async {
   final statusResponse = StatusResponse();
-  final database = Mysql();
-  await database.connect();
+  final conn = await Mysql.connect();
+  final database = Mysql(conn);
 
   final userRepository = UserRepositoryImpl(database);
   final timeRepositoty = TimeRepositoryImpl(database);

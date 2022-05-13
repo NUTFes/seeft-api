@@ -7,16 +7,17 @@ class TimeRepositoryImpl implements TimeRepository {
 
   TimeRepositoryImpl(this.database);
 
+  @override
   Future<List<Time>> getTimes(ctx) async {
     String sql = '''
-SELECT * FROM times;
-''';
+      SELECT * FROM times;
+      ''';
 
-    List<Map<String, dynamic>> data = await database.select(ctx, sql);
+    List<Map<String, dynamic>> data = await database.finds(ctx, sql);
     List<Time> list = [];
 
-    data.forEach((d) {
-      Time user = Time(
+    for (var d in data) {
+      Time time = Time(
         id: d['id'],
         time: d['time'],
         createdAt: d['created_at'].toString(),
@@ -24,10 +25,12 @@ SELECT * FROM times;
         deletedAt: d['deleted_at'].toString(),
       );
 
-      if (!user.isDeleted) {
-        list.add(user);
+      if (time.isDeleted) {
+        continue;
       }
-    });
+
+      list.add(time);
+    }
 
     return list;
   }

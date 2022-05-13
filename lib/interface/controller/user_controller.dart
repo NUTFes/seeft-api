@@ -1,34 +1,39 @@
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
 
+import '../../config/export.dart';
 import '../../entity/export.dart';
+import '../../usecase/user_usecase.dart';
 
 class UserController {
-  var statusResponse;
-  var userUsecase;
+  StatusResponse statusResponse;
+  UserUsecase userUsecase;
 
-  UserController(this.statusResponse, this.userUsecase);
+  UserController(
+    this.statusResponse,
+    this.userUsecase,
+  );
 
   getUser(Request request, String id) async {
     try {
       User user = await userUsecase.getUser(request.context, int.parse(id));
+
       if (user.isDeleted) {
         throw Exception('this user is deleted.');
       }
 
-      return;
-
       var json = jsonEncode(user.toMap);
+
       return statusResponse.responseOK(json);
-    } on Exception catch (e, st) {
-      print(e);
-      //      print(st);
-      print(e.runtimeType);
-      var json = jsonEncode({"message": e.toString()});
+    } on Exception catch (e) {
+      Log.severe('userContoller.getUser: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
+
       return statusResponse.responseBadRequest(json);
-    } on Error catch (e, st) {
-      print(e.runtimeType);
-      var json = jsonEncode({"message": e.toString()});
+    } on Error catch (e) {
+      Log.severe('userContoller.getUser: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
+
       return statusResponse.responseBadRequest(json);
     }
   }
@@ -38,17 +43,16 @@ class UserController {
       List<User> users = await userUsecase.getUsers(request.context);
 
       List<Map> list = [];
-      users.forEach((user) {
+      for (var user in users) {
         list.add(user.toMap);
-      });
+      }
+
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
+    } catch (e) {
+      Log.severe('userContoller.getUsers: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
 
-      //    } on Exception catch(e, st) {
-    } catch (e, st) {
-      print(e);
-      //      print(st);
-      var json = jsonEncode({"message": e.toString()});
       return statusResponse.responseBadRequest(json);
     }
   }
@@ -62,7 +66,7 @@ class UserController {
         throw Exception('name params does not exist');
       }
 
-      if (params["bureauId"] == null) {
+      if (params['bureauId'] == null) {
         throw Exception('bureauId params does not exits.');
       }
 
@@ -70,21 +74,21 @@ class UserController {
         throw Exception('gradeId params does not exist.');
       }
 
-      User user = await userUsecase.insertUser(
+      final User user = await userUsecase.insertUser(
         request.context,
         User(
-          name: params["name"],
-          bureauId: params["bureauId"],
-          gradeId: params["gradeId"],
+          name: params['name'],
+          bureauId: params['bureauId'],
+          gradeId: params['gradeId'],
         ),
       );
 
-      var json = jsonEncode(user.toMap);
+      final json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
-      //    } on Exception catch(e, st) {
-    } catch (e, st) {
-      print(e);
-      var json = jsonEncode({"message": e.toString()});
+    } catch (e) {
+      Log.severe('userContoller.insertUser: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
+
       return statusResponse.responseBadRequest(json);
     }
   }
@@ -109,8 +113,8 @@ class UserController {
       User user = await userUsecase.updateUser(
         request.context,
         User(
-          id: params["id"],
-          name: params["name"],
+          id: params['id'],
+          name: params['name'],
           bureauId: params['bureauId'],
           gradeId: params['gradeId'],
         ),
@@ -118,10 +122,10 @@ class UserController {
 
       String json = jsonEncode(user.toMap);
       return statusResponse.responseOK(json);
-      //    } on Exception catch(e, st) {
-    } catch (e, st) {
-      print(e);
-      var json = jsonEncode({"message": e.toString()});
+    } catch (e) {
+      Log.severe('userContoller.updateUser: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
+
       return statusResponse.responseBadRequest(json);
     }
   }
@@ -132,11 +136,12 @@ class UserController {
 
       Map map = {'success': user.isDeleted};
       String json = jsonEncode(map);
+
       return statusResponse.responseOK(json);
-      //    } on Exception catch(e, st) {
-    } catch (e, st) {
-      print(e);
-      var json = jsonEncode({"message": e.toString()});
+    } catch (e) {
+      Log.severe('userContoller.delete: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
+
       return statusResponse.responseBadRequest(json);
     }
   }

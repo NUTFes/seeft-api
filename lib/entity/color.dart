@@ -11,7 +11,7 @@ class Color {
   int get blue => (0x00FF00 & value) >> 0;
 
   @override
-  String toString() => '${value.toRadixString(16).padLeft(6, '0')}';
+  String toString() => value.toRadixString(16).padLeft(6, '0');
 
-  String toHex() => '0x${value.toRadixString(16).padLeft(6, '0')}';
+  String toHex() => "0x${value.toRadixString(16).padLeft(6, '0')}";
 }

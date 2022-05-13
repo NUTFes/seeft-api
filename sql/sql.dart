@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:mysql1/mysql1.dart';
 
 void main(List<String> args) async {
-  print(args);
   var parser = ArgParser();
 
   // --mode abc でabcという値をとる
@@ -14,12 +13,16 @@ void main(List<String> args) async {
   // parser.addFlag('mode', abbr: 'm');
 
   // parser.Commandでmigrateと作成をわける
-  var seedCommand = parser.addCommand('seed');
 
+  /*
+これから増えるはず
+  var seedCommand = parser.addCommand('seed');
+  */
+  parser.addCommand('seed');
   var newCommand = parser.addCommand('new');
   newCommand.addOption('model', abbr: 'm');
 
-  var migrateCommand = parser.addCommand('migrate');
+  parser.addCommand('migrate');
   var results = parser.parse(args);
 
   if (results.command?.name == null) {
@@ -36,15 +39,16 @@ void main(List<String> args) async {
 }
 
 seed() async {
-  final ConnectionSettings settings = new ConnectionSettings(host: 'db', user: 'mysql', password: 'pwd', db: 'seeft');
+  final ConnectionSettings settings = ConnectionSettings(host: 'db', user: 'mysql', password: 'pwd', db: 'seeft');
   var conn = await MySqlConnection.connect(settings);
 
   String file = await File('/myapp/sql/seed.sql').readAsString();
   List<String> sqls = file.split(';');
   sqls.removeLast();
-  sqls.forEach((String sql) async {
+
+  for (var sql in sqls) {
     await conn.query(sql + ';');
-  });
+  }
   await conn.close();
   print('finish');
 }
@@ -54,13 +58,13 @@ run(name) {
   final DateFormat format = DateFormat('yyyyMMddHms');
   String time = format.format(now);
   String create = time + '_' + name + '.create.sql';
-  String drop = time + '_' + name + '.drop.sql';
+//  String drop = time + '_' + name + '.drop.sql';
 
-  final File createFile = new File(create);
+  final File createFile = File(create);
 //    final File dropFile = new File(drop);
 
   createFile.writeAsString('''
-CREATE TABLE IF NOT EXISTS ${name} (
+CREATE TABLE IF NOT EXISTS $name (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

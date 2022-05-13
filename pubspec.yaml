@@ -1,5 +1,5 @@
-name: app
-description: A simple command-line application.
+name: seeft_api
+description: seeft's backend API server.
 version: 1.0.0
 # homepage: https://www.example.com
 

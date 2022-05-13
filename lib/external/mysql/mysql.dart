@@ -4,28 +4,34 @@ import 'package:mysql1/mysql1.dart';
 import '../../interface/repository/external/database.dart';
 
 class Mysql implements Database {
-  late MySqlConnection conn;
+  final MySqlConnection conn;
 
-  Mysql();
+  Mysql(this.conn);
 
-  Future<void> connect() async {
-    final ConnectionSettings settings = new ConnectionSettings(host: 'db', user: 'mysql', password: 'pwd', db: 'seeft');
-    conn = await MySqlConnection.connect(settings);
+  static Future<MySqlConnection> connect() async {
+    final ConnectionSettings settings = ConnectionSettings(
+      host: 'db',
+      user: 'mysql',
+      password: 'pwd',
+      db: 'seeft',
+    );
+    return await MySqlConnection.connect(settings);
   }
 
-  Future<List<Map<String, dynamic>>> select(ctx, sql) async {
+  @override
+  Future<List<Map<String, dynamic>>> finds(ctx, sql) async {
     try {
-      var results = await this.conn.query(sql);
-      List resultsList = results.toList();
-      List<Map<String, dynamic>> list = [];
+      final Results res = await conn.query(sql);
+      final List results = res.toList();
+      final List<Map<String, dynamic>> list = [];
 
-      if (resultsList.length == 0) {
+      if (results.isEmpty) {
         throw Exception("Bad state: No element");
       }
 
-      resultsList.forEach((result) {
+      for (var result in results) {
         list.add(result.fields);
-      });
+      }
 
       return list;
     } catch (e) {
@@ -33,9 +39,10 @@ class Mysql implements Database {
     }
   }
 
-  Future<Map<String, dynamic>> single(ctx, sql) async {
+  @override
+  Future<Map<String, dynamic>> find(ctx, sql) async {
     try {
-      var result = await this.conn.query(sql);
+      final Results result = await conn.query(sql);
       var data = result.first.fields;
       return data;
     } catch (e) {
@@ -43,6 +50,7 @@ class Mysql implements Database {
     }
   }
 
+  @override
   Future<Map<String, dynamic>> insert(ctx, sql) async {
     try {
       var result = await conn.query(sql);
@@ -53,6 +61,7 @@ class Mysql implements Database {
     }
   }
 
+  @override
   Future<Map<String, dynamic>> update(ctx, sql, getSQL) async {
     try {
       await conn.query(sql);
