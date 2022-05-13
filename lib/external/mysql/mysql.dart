@@ -4,7 +4,7 @@ import 'package:mysql1/mysql1.dart';
 import '../../interface/repository/external/database.dart';
 
 class Mysql implements Database {
-  MySqlConnection conn;
+  final MySqlConnection conn;
 
   Mysql(this.conn);
 

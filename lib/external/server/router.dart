@@ -1,15 +1,14 @@
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf/shelf.dart';
-import 'package:shelf/shelf_io.dart' as shelf_io;
 
 import 'routes/export.dart';
-import '../../interface/controller/health_controller.dart';
+import '../../interface/controller/export.dart';
 
 class Service {
-  var healthController;
-  var userController;
-  var timeController;
-  var bureauController;
+  final HealthController healthController;
+  final UserController userController;
+  final TimeController timeController;
+  final BureauController bureauController;
 
   Service(
     this.healthController,
