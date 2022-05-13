@@ -4,7 +4,6 @@ import 'package:shelf/shelf.dart';
 import '../../config/export.dart';
 import '../../entity/export.dart';
 import '../../usecase/time_usecase.dart';
-import '../../entity/export.dart';
 
 class TimeController {
   final StatusResponse statusResponse;
