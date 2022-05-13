@@ -1,8 +1,9 @@
-import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
+import '../../../interface/controller/user_controller.dart';
+
 class UserApi {
-  var controller;
+  final UserController controller;
 
   UserApi(this.controller);
 

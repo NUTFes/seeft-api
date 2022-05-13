@@ -1,8 +1,9 @@
-import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
+import '../../../interface/controller/time_controller.dart';
+
 class TimeApi {
-  var controller;
+  final TimeController controller;
 
   TimeApi(this.controller);
 

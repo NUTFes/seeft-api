@@ -1,8 +1,9 @@
-import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
+import '../../../interface/controller/bureau_controller.dart';
+
 class BureauApi {
-  var controller;
+  final BureauController controller;
 
   BureauApi(this.controller);
 
