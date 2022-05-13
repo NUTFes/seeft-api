@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'package:shelf/shelf.dart';
 
+import '../../config/export.dart';
+import '../../entity/export.dart';
+import '../../usecase/time_usecase.dart';
 import '../../entity/export.dart';
 
 class TimeController {
-  var statusResponse;
-  var timeUsecase;
+  final StatusResponse statusResponse;
+  final TimeUsecase timeUsecase;
 
   TimeController(
     this.statusResponse,
@@ -17,16 +20,15 @@ class TimeController {
       List<Time> times = await timeUsecase.getTimes(request.context);
 
       List<Map> list = [];
-      times.forEach((time) {
+      for (var time in times) {
         list.add(time.toMap);
-      });
+      }
 
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
-    } catch (e, st) {
-      print(e);
-      //      print(st);
-      var json = jsonEncode({"message": e.toString()});
+    } catch (e) {
+      Log.severe('timeContoller.getTimes: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }
   }

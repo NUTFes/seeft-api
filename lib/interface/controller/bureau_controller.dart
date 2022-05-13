@@ -27,8 +27,8 @@ class BureauController {
       var json = jsonEncode(list);
       return statusResponse.responseOK(json);
     } catch (e) {
-      Log.severe("BureauController.getBureaus: " + e.toString());
-      var json = jsonEncode({"message": e.toString()});
+      Log.severe('BureauController.getBureaus: ' + e.toString());
+      var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }
   }
