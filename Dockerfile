@@ -9,4 +9,4 @@ RUN dart pub get --offline
 
 EXPOSE 3000
 
-CMD ["dart", "pub", "run"]
+CMD ["dart", "pub", "get"]

@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     restart: always
-    command: ["dart", "run", "--enable-vm-service", "/myapp/bin/app.dart"]
+    command: ["dart", "run", "--enable-vm-service", "/myapp/lib/main.dart"]
     ports:
       - "3000:3000"
     privileged: true
