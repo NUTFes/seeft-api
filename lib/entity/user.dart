@@ -19,7 +19,7 @@ class User {
 
   bool get isDeleted => deletedAt != 'null';
 
-  Map<String, dynamic> get toMap => {
+  Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'bureauId': bureauId,
