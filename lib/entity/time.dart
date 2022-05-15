@@ -1,25 +1,26 @@
 class Time {
   int id;
   String time;
-  String createdAt;
-  String updatedAt;
-  String deletedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
+  DateTime? deletedAt;
 
   Time({
     this.id = 0,
     this.time = '',
-    this.createdAt = '',
-    this.updatedAt = '',
-    this.deletedAt = '',
-  });
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    DateTime? deletedAt,
+  })  : createdAt = createdAt ?? DateTime(0),
+        updatedAt = updatedAt ?? DateTime(0);
 
-  bool get isDeleted => deletedAt != 'null';
+  bool get isDeleted => deletedAt != null;
 
   Map<String, dynamic> get toMap => {
         'id': id,
         'time': time,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
+        'createdAt': createdAt.toString(),
+        'updatedAt': updatedAt.toString(),
         'deleted': isDeleted,
       };
 }

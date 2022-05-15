@@ -20,9 +20,9 @@ class TimeRepositoryImpl implements TimeRepository {
       Time time = Time(
         id: d['id'],
         time: d['time'],
-        createdAt: d['created_at'].toString(),
-        updatedAt: d['updated_at'].toString(),
-        deletedAt: d['deleted_at'].toString(),
+        createdAt: d['created_at'],
+        updatedAt: d['updated_at'],
+        deletedAt: d['deleted_at'],
       );
 
       if (time.isDeleted) {
