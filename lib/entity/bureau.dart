@@ -19,7 +19,7 @@ class Bureau {
 
   bool get isDeleted => deletedAt != 'null';
 
-  Map<String, dynamic> get toMap => {
+  Map<String, dynamic> toJson() => {
         'id': id,
         'bureau': bureau,
         'color': color.toString(),

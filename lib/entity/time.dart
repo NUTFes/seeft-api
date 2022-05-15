@@ -15,7 +15,7 @@ class Time {
 
   bool get isDeleted => deletedAt != 'null';
 
-  Map<String, dynamic> get toMap => {
+  Map<String, dynamic> toJson() => {
         'id': id,
         'time': time,
         'createdAt': createdAt,

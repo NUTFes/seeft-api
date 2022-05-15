@@ -17,14 +17,7 @@ class TimeController {
   getTimes(Request request) async {
     try {
       List<Time> times = await timeUsecase.getTimes(request.context);
-
-      List<Map> list = [];
-      for (var time in times) {
-        list.add(time.toMap);
-      }
-
-      var json = jsonEncode(list);
-      return statusResponse.responseOK(json);
+      return statusResponse.responseOK(jsonEncode(times));
     } catch (e) {
       Log.severe('timeContoller.getTimes: ' + e.toString());
       var json = jsonEncode({'message': e.toString()});
