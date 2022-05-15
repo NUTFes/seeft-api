@@ -22,9 +22,7 @@ class UserController {
         throw Exception('this user is deleted.');
       }
 
-      var json = jsonEncode(user.toMap);
-
-      return statusResponse.responseOK(json);
+      return statusResponse.responseOK(jsonEncode(user));
     } on Exception catch (e) {
       Log.severe('userContoller.getUser: ' + e.toString());
       var json = jsonEncode({'message': e.toString()});
@@ -41,14 +39,7 @@ class UserController {
   getUsers(Request request) async {
     try {
       List<User> users = await userUsecase.getUsers(request.context);
-
-      List<Map> list = [];
-      for (var user in users) {
-        list.add(user.toMap);
-      }
-
-      var json = jsonEncode(list);
-      return statusResponse.responseOK(json);
+      return statusResponse.responseOK(jsonEncode(users));
     } catch (e) {
       Log.severe('userContoller.getUsers: ' + e.toString());
       var json = jsonEncode({'message': e.toString()});
@@ -83,8 +74,7 @@ class UserController {
         ),
       );
 
-      final json = jsonEncode(user.toMap);
-      return statusResponse.responseOK(json);
+      return statusResponse.responseOK(jsonEncode(user));
     } catch (e) {
       Log.severe('userContoller.insertUser: ' + e.toString());
       var json = jsonEncode({'message': e.toString()});
@@ -120,8 +110,7 @@ class UserController {
         ),
       );
 
-      String json = jsonEncode(user.toMap);
-      return statusResponse.responseOK(json);
+      return statusResponse.responseOK(jsonEncode(user));
     } catch (e) {
       Log.severe('userContoller.updateUser: ' + e.toString());
       var json = jsonEncode({'message': e.toString()});

@@ -39,7 +39,7 @@ void main() {
     expect(testUser.isDeleted, true);
   });
 
-  test('user.toMap', () {
+  test('user.toJson()', () {
     final User initialUser = User();
     const Map<String, dynamic> initialMap = {
       'id': 0,
@@ -50,7 +50,7 @@ void main() {
       'updatedAt': '',
       'isDeleted': false,
     };
-    expect(initialUser.toMap, initialMap);
+    expect(initialUser.toJson(), initialMap);
 
     const Map<String, dynamic> testMap = {
       'id': 1,
@@ -61,6 +61,6 @@ void main() {
       'updatedAt': '2002/10/23 06:44:11',
       'isDeleted': true,
     };
-    expect(testUser.toMap, testMap);
+    expect(testUser.toJson(), testMap);
   });
 }
