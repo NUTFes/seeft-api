@@ -21,9 +21,9 @@ class BureauRepositoryImpl implements BureauRepository {
         id: d['id'],
         bureau: d['bureau'],
         color: Color(int.parse(d['color'], radix: 16)),
-        createdAt: d['created_at'].toString(),
-        updatedAt: d['updated_at'].toString(),
-        deletedAt: d['deleted_at'].toString(),
+        createdAt: d['created_at'],
+        updatedAt: d['updated_at'],
+        deletedAt: d['deleted_at'],
       );
 
       if (bureau.isDeleted) {

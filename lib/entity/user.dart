@@ -1,31 +1,32 @@
 class User {
-  int id;
-  String name;
-  int bureauId;
-  int gradeId;
-  String createdAt;
-  String updatedAt;
-  String deletedAt;
+  final int id;
+  final String name;
+  final int bureauId;
+  final int gradeId;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
 
   User({
     this.id = 0,
     this.name = '',
     this.bureauId = 0,
     this.gradeId = 0,
-    this.createdAt = '',
-    this.updatedAt = '',
-    this.deletedAt = 'null',
-  });
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    this.deletedAt,
+  })  : createdAt = createdAt ?? DateTime(0),
+        updatedAt = updatedAt ?? DateTime(0);
 
-  bool get isDeleted => deletedAt != 'null';
+  bool get isDeleted => deletedAt != null;
 
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'bureauId': bureauId,
         'gradeId': gradeId,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
+        'createdAt': createdAt.toString(),
+        'updatedAt': updatedAt.toString(),
         'isDeleted': isDeleted
       };
 }

@@ -89,9 +89,9 @@ class UserRepositoryImpl implements UserRepository {
       name: data['name'],
       bureauId: data['bureau_id'],
       gradeId: data['grade_id'],
-      createdAt: data['created_at'].toString(),
-      updatedAt: data['updated_at'].toString(),
-      deletedAt: data['deleted_at'].toString(),
+      createdAt: data['created_at'],
+      updatedAt: data['updated_at'],
+      deletedAt: data['deleted_at'],
     );
   }
 }
