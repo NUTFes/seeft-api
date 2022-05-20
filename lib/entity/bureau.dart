@@ -14,7 +14,7 @@ class Bureau {
     this.color = const Color(0xFFFAFA),
     DateTime? createdAt,
     DateTime? updatedAt,
-    DateTime? deletedAt,
+    this.deletedAt,
   })  : createdAt = createdAt ?? DateTime(0),
         updatedAt = updatedAt ?? DateTime(0);
 
@@ -26,6 +26,6 @@ class Bureau {
         'color': color.toString(),
         'createdAt': createdAt.toString(),
         'updatedAt': updatedAt.toString(),
-        'deleted': isDeleted,
+        'isDeleted': isDeleted,
       };
 }
