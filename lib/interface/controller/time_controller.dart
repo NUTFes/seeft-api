@@ -14,8 +14,9 @@ class TimeController {
     this.timeUsecase,
   );
 
-  getTimes(Request request) async {
+  Future<Response> getTimes(Request request) async {
     try {
+      print(request.headers);
       List<Time> times = await timeUsecase.getTimes(request.context);
       return statusResponse.responseOK(jsonEncode(times));
     } catch (e) {
