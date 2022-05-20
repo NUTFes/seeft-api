@@ -10,7 +10,7 @@ class Time {
     this.time = '',
     DateTime? createdAt,
     DateTime? updatedAt,
-    DateTime? deletedAt,
+    this.deletedAt,
   })  : createdAt = createdAt ?? DateTime(0),
         updatedAt = updatedAt ?? DateTime(0);
 
@@ -21,6 +21,6 @@ class Time {
         'time': time,
         'createdAt': createdAt.toString(),
         'updatedAt': updatedAt.toString(),
-        'deleted': isDeleted,
+        'isDeleted': isDeleted,
       };
 }

@@ -7,11 +7,9 @@ class Color {
       : value = (((r & 0xff) << 16) | ((g & 0xff) << 8) | ((b & 0xff) << 0)) & 0xFFFFFF;
 
   int get red => (0xFF0000 & value) >> 16;
-  int get green => (0x0000FF & value) >> 8;
-  int get blue => (0x00FF00 & value) >> 0;
+  int get green => (0x00FF00 & value) >> 8;
+  int get blue => (0x0000FF & value) >> 0;
 
   @override
-  String toString() => value.toRadixString(16).padLeft(6, '0');
-
-  String toHex() => "0x${value.toRadixString(16).padLeft(6, '0')}";
+  String toString() => "0x${value.toRadixString(16).padLeft(6, '0')}";
 }
