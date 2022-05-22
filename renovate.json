@@ -1,6 +1,6 @@
 {
   "extends": ["config:base"],
-  "ingorePresetes": [":prHourlyLimit2"],
+  "ingorePresets": [":prHourlyLimit2"],
   "timezone": "Asia/Tokyo",
   "dependencyDashboard": false,
   "branchConcurrentLimit": 0
