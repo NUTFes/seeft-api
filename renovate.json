@@ -1,6 +1,6 @@
 {
   "extends": ["config:base"],
-  "igorePresets": [":prHourlyLimit2"],
+  "ignorePresets": [":prHourlyLimit2"],
   "timezone": "Asia/Tokyo",
   "dependencyDashboard": false,
   "branchConcurrentLimit": 0
