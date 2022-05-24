@@ -22,9 +22,9 @@ initializeServer() async {
   final timeRepositoty = TimeRepositoryImpl(database);
   final bureauRepository = BureauRepositoryImpl(database);
 
-  final userUsecase = UserUsecase(userRepository);
-  final timeUsecase = TimeUsecase(timeRepositoty);
-  final bureauUsecase = BureauUsecase(bureauRepository);
+  final userUsecase = UserUsecaseImpl(userRepository);
+  final timeUsecase = TimeUsecaseImpl(timeRepositoty);
+  final bureauUsecase = BureauUsecaseImpl(bureauRepository);
 
   final healthController = HealthController();
   final userController = UserController(statusResponse, userUsecase);

@@ -25,6 +25,3 @@ dev_dependencies:
 analyzer:
   exclue:
     - sql/sql.dart
-  errors:
-    # ignore
-    unnecessary_new: ignore
