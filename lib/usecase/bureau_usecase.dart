@@ -10,6 +10,7 @@ class BureauUsecaseImpl implements BureauUsecase {
 
   BureauUsecaseImpl(this.bureauRepository);
 
+  @override
   Future<List<Bureau>> getBureaus(ctx) async {
     List<Bureau> list = await bureauRepository.getBureaus(ctx);
 
