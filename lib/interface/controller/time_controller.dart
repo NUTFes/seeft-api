@@ -19,7 +19,7 @@ class TimeController {
       List<Time> times = await timeUsecase.getTimes(request.context);
       return statusResponse.responseOK(jsonEncode(times));
     } catch (e) {
-      Log.severe('timeContoller.getTimes: ' + e.toString());
+      Log.severe('timeContoller.getTimes: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }

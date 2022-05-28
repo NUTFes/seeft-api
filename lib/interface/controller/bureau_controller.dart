@@ -19,7 +19,7 @@ class BureauController {
       List<Bureau> bureaus = await bureauUsecase.getBureaus(request.context);
       return statusResponse.responseOK(jsonEncode(bureaus));
     } catch (e) {
-      Log.severe('BureauController.getBureaus: ' + e.toString());
+      Log.severe('BureauController.getBureaus: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }

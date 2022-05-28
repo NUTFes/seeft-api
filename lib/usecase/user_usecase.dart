@@ -39,9 +39,8 @@ class UserUsecaseImpl implements UserUsecase {
       throw Exception('request name is same.');
     }
     User user = await userRepository.updateUser(ctx, req);
-
     if (test.updatedAt == user.updatedAt) {
-      throw Exception('cant updated');
+      throw Exception('cant updated because request same response');
     }
     return user;
   }
