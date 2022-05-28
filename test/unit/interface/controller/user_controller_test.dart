@@ -37,7 +37,6 @@ void main() {
     final correct = await _createUser(User(id: 1));
     expect(user.readAsString(), completion(jsonEncode(correct)));
   });
-
   test('user_controller.deletetUser', () async {
     var request = Request('DEL', Uri.parse('http://localhost:3000/users/1'));
     final user = await controller.getUser(request, "1");
