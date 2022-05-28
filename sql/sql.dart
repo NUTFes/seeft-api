@@ -47,7 +47,7 @@ seed() async {
   sqls.removeLast();
 
   for (var sql in sqls) {
-    await conn.query(sql + ';');
+    await conn.query('$sql;');
   }
   await conn.close();
   print('finish');
@@ -57,7 +57,7 @@ run(name) {
   final DateTime now = DateTime.now();
   final DateFormat format = DateFormat('yyyyMMddHms');
   String time = format.format(now);
-  String create = time + '_' + name + '.create.sql';
+  String create = '${time}_$name.create.sql';
 //  String drop = time + '_' + name + '.drop.sql';
 
   final File createFile = File(create);

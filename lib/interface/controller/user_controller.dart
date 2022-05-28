@@ -24,12 +24,12 @@ class UserController {
 
       return statusResponse.responseOK(jsonEncode(user));
     } on Exception catch (e) {
-      Log.severe('userContoller.getUser: ' + e.toString());
+      Log.severe('userContoller.getUser: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
 
       return statusResponse.responseBadRequest(json);
     } on Error catch (e) {
-      Log.severe('userContoller.getUser: ' + e.toString());
+      Log.severe('userContoller.getUser: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
 
       return statusResponse.responseBadRequest(json);
@@ -41,7 +41,7 @@ class UserController {
       List<User> users = await userUsecase.getUsers(request.context);
       return statusResponse.responseOK(jsonEncode(users));
     } catch (e) {
-      Log.severe('userContoller.getUsers: ' + e.toString());
+      Log.severe('userContoller.getUsers: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
 
       return statusResponse.responseBadRequest(json);
@@ -76,7 +76,7 @@ class UserController {
 
       return statusResponse.responseOK(jsonEncode(user));
     } catch (e) {
-      Log.severe('userContoller.insertUser: ' + e.toString());
+      Log.severe('userContoller.insertUser: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
 
       return statusResponse.responseBadRequest(json);
@@ -112,7 +112,7 @@ class UserController {
 
       return statusResponse.responseOK(jsonEncode(user));
     } catch (e) {
-      Log.severe('userContoller.updateUser: ' + e.toString());
+      Log.severe('userContoller.updateUser: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
 
       return statusResponse.responseBadRequest(json);
@@ -128,7 +128,7 @@ class UserController {
 
       return statusResponse.responseOK(json);
     } catch (e) {
-      Log.severe('userContoller.delete: ' + e.toString());
+      Log.severe('userContoller.delete: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
 
       return statusResponse.responseBadRequest(json);

@@ -5,7 +5,6 @@ import 'package:test/test.dart';
 import 'package:seeft_api/usecase/repository/user_repository.dart';
 import 'package:seeft_api/usecase/user_usecase.dart';
 import 'package:seeft_api/entity/user.dart';
-import 'package:seeft_api/config/http_status.dart';
 
 void main() {
   final usecase = UserUsecaseImpl(UserRepositoryTest());

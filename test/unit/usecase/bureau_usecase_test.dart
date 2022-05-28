@@ -5,7 +5,6 @@ import 'package:test/test.dart';
 import 'package:seeft_api/usecase/repository/bureau_repository.dart';
 import 'package:seeft_api/usecase/bureau_usecase.dart';
 import 'package:seeft_api/entity/bureau.dart';
-import 'package:seeft_api/config/http_status.dart';
 
 void main() {
   final usecase = BureauUsecaseImpl(BureauRepositoryTest());

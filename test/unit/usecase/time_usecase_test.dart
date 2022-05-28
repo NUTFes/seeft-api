@@ -5,7 +5,6 @@ import 'package:test/test.dart';
 import 'package:seeft_api/usecase/repository/time_repository.dart';
 import 'package:seeft_api/usecase/time_usecase.dart';
 import 'package:seeft_api/entity/time.dart';
-import 'package:seeft_api/config/http_status.dart';
 
 void main() {
   final usecase = TimeUsecaseImpl(TimeRepositoryTest());
