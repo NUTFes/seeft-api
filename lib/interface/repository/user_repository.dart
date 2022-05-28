@@ -30,7 +30,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<User> getUser(ctx, id) async {
+  Future<User> getUser(ctx, int id) async {
     String sql = '''
       SELECT * FROM users WHERE id=$id;
       ''';
