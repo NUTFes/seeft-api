@@ -10,8 +10,8 @@ class TimeRepositoryImpl implements TimeRepository {
   @override
   Future<List<Time>> getTimes(ctx) async {
     String sql = '''
-      SELECT * FROM times;
-      ''';
+SELECT * FROM times;
+''';
 
     List<Map<String, dynamic>> data = await database.finds(ctx, sql);
     List<Time> list = [];

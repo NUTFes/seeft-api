@@ -1,6 +1,6 @@
 abstract class Database {
-  Future<List<Map<String, dynamic>>> finds(ctx, sql);
-  Future<Map<String, dynamic>> find(ctx, sql);
-  Future<Map<String, dynamic>> insert(ctx, sql);
-  Future<Map<String, dynamic>> update(ctx, sql, getSQL);
+  Future<List<Map<String, dynamic>>> finds(ctx, String sql);
+  Future<Map<String, dynamic>> find(ctx, String sql);
+  Future<Map<String, dynamic>> insert(ctx, String sql);
+  Future<Map<String, dynamic>> update(ctx, String sql, String getSQL);
 }
