@@ -54,8 +54,9 @@ class DatabaseTest implements Database {
 }
 
 _createList() async {
+  final date = DateTime(10);
   return await Future<List<Map<String, dynamic>>>.value([
-    {'id': 1, 'bureau': 'somu'}
+    {'id': 1, 'bureau': 'somu', 'color': 'ffffff', 'createdAt': 'hoge', 'updatedAt': 'fuga', 'deletedAt': Null,}
   ]);
 }
 
