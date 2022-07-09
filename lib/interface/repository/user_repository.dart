@@ -10,8 +10,8 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<List<User>> getUsers(ctx) async {
     String sql = '''
-      SELECT * FROM users;
-      ''';
+SELECT * FROM users;
+''';
 
     List<Map<String, dynamic>> data = await database.finds(ctx, sql);
     List<User> list = [];
@@ -32,8 +32,8 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<User> getUser(ctx, int id) async {
     String sql = '''
-      SELECT * FROM users WHERE id=$id;
-      ''';
+SELECT * FROM users WHERE id=$id;
+''';
     Map<String, dynamic> data = await database.find(ctx, sql);
 
     return _convertUser(data);
@@ -42,10 +42,10 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<User> insertUser(ctx, User req) async {
     String sql = '''
-      INSERT INTO users (name, bureau_id, grade_id)
-        VALUES ("${req.name}", "${req.bureauId}", "${req.gradeId}") 
-        returning *;
-      ''';
+INSERT INTO users (name, bureau_id, grade_id)
+    VALUES ("${req.name}", "${req.bureauId}", "${req.gradeId}") 
+    returning *;
+''';
 
     var data = await database.insert(ctx, sql);
     if (data["id"] == 0) {
@@ -58,11 +58,11 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<User> updateUser(ctx, User user) async {
     String sql = '''
-      UPDATE users SET name="${user.name}" WHERE id=${user.id};
-      ''';
+UPDATE users SET name="${user.name}" WHERE id=${user.id};
+''';
     String returningSQL = '''
-      SELECT * FROM users WHERE id=${user.id};
-      ''';
+SELECT * FROM users WHERE id=${user.id};
+''';
 
     var data = await database.update(ctx, sql, returningSQL);
 
@@ -72,11 +72,11 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<User> deleteUser(ctx, User user) async {
     String sql = '''
-      UPDATE users SET deleted_at=NOW() WHERE id=${user.id};
-      ''';
+UPDATE users SET deleted_at=NOW() WHERE id=${user.id};
+''';
     String returningSQL = '''
-      SELECT * FROM users WHERE id=${user.id};
-      ''';
+SELECT * FROM users WHERE id=${user.id};
+''';
 
     var data = await database.update(ctx, sql, returningSQL);
 
