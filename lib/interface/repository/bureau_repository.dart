@@ -10,8 +10,8 @@ class BureauRepositoryImpl implements BureauRepository {
   @override
   Future<List<Bureau>> getBureaus(ctx) async {
     String sql = '''
-      SELECT * FROM bureaus;
-      ''';
+SELECT * FROM bureaus;
+''';
 
     List<Map<String, dynamic>> data = await database.finds(ctx, sql);
     List<Bureau> list = [];
