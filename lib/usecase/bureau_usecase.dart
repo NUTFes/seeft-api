@@ -1,5 +1,5 @@
-import '../entity/export.dart';
-import './repository/bureau_repository.dart';
+import '../entity/entity.dart';
+import './repository/repository.dart';
 
 abstract class BureauUsecase {
   Future<List<Bureau>> getBureaus(ctx);

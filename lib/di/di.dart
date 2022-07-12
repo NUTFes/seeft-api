@@ -1,19 +1,14 @@
 import '../external/server/server.dart';
 import '../external/server/service.dart';
 import '../external/mysql/mysql.dart';
-import '../interface/controller/health_controller.dart';
-import '../interface/controller/user_controller.dart';
-import '../interface/controller/time_controller.dart';
-import '../interface/controller/bureau_controller.dart';
-import '../interface/repository/user_repository.dart';
-import '../interface/repository/time_repository.dart';
-import '../interface/repository/bureau_repository.dart';
-import '../usecase/user_usecase.dart';
-import '../usecase/time_usecase.dart';
-import '../usecase/bureau_usecase.dart';
-import '../config/http_status.dart';
+import '../interface/controller/controller.dart';
+import '../interface/repository/repository.dart';
+import '../usecase/usecase.dart';
+import '../config/config.dart';
 
 initializeServer() async {
+  final environment = Environment();
+  print(environment.applicationEnv);
   final statusResponse = StatusResponse();
   final conn = await Mysql.connect();
   final database = Mysql(conn);

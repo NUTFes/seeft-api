@@ -1,5 +1,5 @@
-import '../entity/export.dart';
-import './repository/time_repository.dart';
+import '../entity/entity.dart';
+import './repository/repository.dart';
 
 abstract class TimeUsecase {
   Future<List<Time>> getTimes(ctx);

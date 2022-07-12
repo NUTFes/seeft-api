@@ -1,4 +1,4 @@
-import '../../entity/export.dart';
+import '../../entity/entity.dart';
 
 abstract class BureauRepository {
   Future<List<Bureau>> getBureaus(ctx);

@@ -1,6 +1,6 @@
 import '../../usecase/repository/user_repository.dart';
 import './external/database.dart';
-import '../../entity/export.dart';
+import '../../entity/entity.dart';
 
 class UserRepositoryImpl implements UserRepository {
   Database database;

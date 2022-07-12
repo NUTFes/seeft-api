@@ -1,5 +1,5 @@
-import '../entity/export.dart';
-import './repository/user_repository.dart';
+import '../entity/entity.dart';
+import './repository/repository.dart';
 
 abstract class UserUsecase {
   Future<List<User>> getUsers(ctx);
