@@ -6,11 +6,9 @@ import '../interface/repository/repository.dart';
 import '../usecase/usecase.dart';
 import '../config/config.dart';
 
-initializeServer() async {
-  final environment = Environment();
-  print(environment.applicationEnv);
+initializeServer(Environment env) async {
   final statusResponse = StatusResponse();
-  final conn = await Mysql.connect();
+  final conn = await Mysql.connect(env);
   final database = Mysql(conn);
 
   final userRepository = UserRepositoryImpl(database);
@@ -32,7 +30,7 @@ initializeServer() async {
     timeController,
     bureauController,
   );
-  final server = Server(service);
+  final server = Server(service, env);
 
   return server;
 }

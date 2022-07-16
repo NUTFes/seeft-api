@@ -3,8 +3,15 @@ import 'package:logging/logging.dart';
 final log = Logger('SeeFT-API-Logger');
 
 class Log {
-  static setup() {
+  static setupDev() {
     Logger.root.level = Level.CONFIG;
+    Logger.root.onRecord.listen((record) {
+      print('${record.level.name}: ${record.time}: ${record.message}');
+    });
+  }
+
+  static setupProd() {
+    Logger.root.level = Level.WARNING;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
