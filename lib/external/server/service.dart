@@ -1,8 +1,8 @@
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf/shelf.dart';
 
-import 'routes/export.dart';
-import '../../interface/controller/export.dart';
+import 'routes/route.dart';
+import '../../interface/controller/controller.dart';
 
 class Service {
   final HealthController healthController;

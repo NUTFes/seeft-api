@@ -1,5 +1,5 @@
 import '../../usecase/repository/bureau_repository.dart';
-import '../../entity/export.dart';
+import '../../entity/entity.dart';
 import './external/database.dart';
 
 class BureauRepositoryImpl implements BureauRepository {

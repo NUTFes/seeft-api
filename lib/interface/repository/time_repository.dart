@@ -1,5 +1,5 @@
 import '../../usecase/repository/time_repository.dart';
-import '../../entity/export.dart';
+import '../../entity/entity.dart';
 import './external/database.dart';
 
 class TimeRepositoryImpl implements TimeRepository {

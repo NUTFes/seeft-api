@@ -2,18 +2,19 @@ import 'dart:async';
 import 'package:mysql1/mysql1.dart';
 
 import '../../interface/repository/external/database.dart';
+import '../../config/config.dart';
 
 class Mysql implements Database {
   final MySqlConnection conn;
 
   Mysql(this.conn);
 
-  static Future<MySqlConnection> connect() async {
+  static Future<MySqlConnection> connect(Environment env) async {
     final ConnectionSettings settings = ConnectionSettings(
-      host: 'db',
-      user: 'mysql',
-      password: 'pwd',
-      db: 'seeft',
+      host: env.database.host,
+      user: env.database.user,
+      password: env.database.password,
+      db: env.database.name,
     );
     return await MySqlConnection.connect(settings);
   }

@@ -1,28 +1,35 @@
 import 'package:logging/logging.dart';
 
-final log = Logger('SeeFT-API-Logger');
+final logger = Logger('SeeFT-API-Logger');
 
 class Log {
-  static setup() {
+  static setupDev() {
     Logger.root.level = Level.CONFIG;
     Logger.root.onRecord.listen((record) {
       print('${record.level.name}: ${record.time}: ${record.message}');
     });
   }
 
+  static setupProd() {
+    Logger.root.level = Level.WARNING;
+    Logger.root.onRecord.listen((record) {
+      print('${record.level.name}: ${record.time}: ${record.message}');
+    });
+  }
+
   static severe(dynamic text) {
-    log.severe(text);
+    logger.severe(text);
   }
 
   static warning(dynamic text) {
-    log.warning(text);
+    logger.warning(text);
   }
 
   static info(dynamic text) {
-    log.info(text);
+    logger.info(text);
   }
 
   static config(dynamic text) {
-    log.config(text);
+    logger.config(text);
   }
 }

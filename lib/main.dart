@@ -1,13 +1,20 @@
 import 'package:hotreloader/hotreloader.dart';
 
 import './di/di.dart';
-import './config/logger.dart';
+import './config/config.dart';
 
 void main() async {
-  Log.setup();
-  await HotReloader.create(onAfterReload: (ctx) => log.info('Hot-reload result: ${ctx.result}\n ${ctx.reloadReports}'));
+  final Environment env = Environment();
+  if (env.applicationEnv == 'production') {
+    Log.setupProd();
+  } else {
+    Log.setupDev();
+  }
 
-  final server = await initializeServer();
+  await HotReloader.create(
+      onAfterReload: (ctx) => logger.info('Hot-reload result: ${ctx.result}\n ${ctx.reloadReports}'));
+
+  final server = await initializeServer(env);
 
   await server.run();
 }

@@ -17,6 +17,12 @@ services:
       - db
     volumes:
       - ./:/myapp
+    env_file: .env
+    healthcheck:
+      test: ["curl localhost:3000/healthz"]
+      interval: 60s
+      timeout: 10s
+      retries: 10
 
   db:
     container_name: SeeFT-DB
