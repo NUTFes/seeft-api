@@ -11,7 +11,8 @@ void main() async {
     Log.setupDev();
   }
 
-  await HotReloader.create(onAfterReload: (ctx) => log.info('Hot-reload result: ${ctx.result}\n ${ctx.reloadReports}'));
+  await HotReloader.create(
+      onAfterReload: (ctx) => logger.info('Hot-reload result: ${ctx.result}\n ${ctx.reloadReports}'));
 
   final server = await initializeServer(env);
 

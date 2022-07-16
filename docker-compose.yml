@@ -17,7 +17,7 @@ services:
       - db
     volumes:
       - ./:/myapp
-    env_file: .envrc
+    env_file: .env
     healthcheck:
       test: ["curl localhost:3000/healthz"]
       interval: 60s
