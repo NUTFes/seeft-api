@@ -25,8 +25,8 @@ class Permission {
   Map<String, dynamic> toJson() => {
         'id': id,
         'allowShift': allowShift,
-        'allowTask':allowTask,
-        'allowUser':allowUser,
+        'allowTask': allowTask,
+        'allowUser': allowUser,
         'allowProperty': allowProperty,
         'createdAt': createdAt.toString(),
         'updatedAt': updatedAt.toString(),

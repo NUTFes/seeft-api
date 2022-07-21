@@ -8,3 +8,5 @@ export 'task.dart';
 export 'weather.dart';
 export 'year.dart';
 export 'permission.dart';
+export 'task.dart';
+export 'shift.dart';
