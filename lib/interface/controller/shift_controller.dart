@@ -7,17 +7,20 @@ import '../../usecase/usecase.dart';
 
 class ShiftController {
   final StatusResponse statusResponse;
-//  final TimeUsecase timeUsecase;
+  final ShiftUsecase shiftUsecase;
 
   ShiftController(
     this.statusResponse,
-//    this.timeUsecase,
+    this.shiftUsecase,
   );
 
   Future<Response> getShiftsByUser(Request request, String id) async {
     try {
       Log.info('${request.headers}');
-      return Response.ok('response ok.}');
+      final req = User(id: int.parse(id));
+      final res = await shiftUsecase.getShiftsByUser(request.context, req);
+      return statusResponse.responseOK(jsonEncode(res));
+      
 /*
       List<Time> times = await timeUsecase.getTimes(request.context);
       return statusResponse.responseOK(jsonEncode(times));
