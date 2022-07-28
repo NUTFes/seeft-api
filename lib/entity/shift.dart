@@ -1,11 +1,13 @@
+import 'entity.dart';
+
 class Shift {
   int id;
-  int userId;
-  int taskId;
-  int yearId;
-  int dateId;
-  int timeId;
-  int weatherId;
+  User user;
+  Task task;
+  Year year;
+  Date date;
+  Time time;
+  Weather weather;
   bool isAttendance;
   int createdUserId;
   int updatedUserId;
@@ -15,31 +17,37 @@ class Shift {
 
   Shift({
     this.id = 0,
-    this.userId = 0,
-    this.taskId = 0,
-    this.yearId = 0,
-    this.dateId = 0,
-    this.timeId = 0,
-    this.weatherId = 0,
+    User? user,
+    task,
+    year,
+    date,
+    time,
+    weather,
     this.isAttendance = false,
     this.createdUserId = 0,
     this.updatedUserId = 0,
     DateTime? createdAt,
     DateTime? updatedAt,
     this.deletedAt,
-  })  : createdAt = createdAt ?? DateTime(0),
+  })  : user = user ?? User(),
+        task = task ?? Task(),
+        year = year ?? Year(),
+        date = date ?? Date(),
+        time = time ?? Time(),
+        weather = weather ?? Weather(),
+        createdAt = createdAt ?? DateTime(0),
         updatedAt = updatedAt ?? DateTime(0);
 
   bool get isDeleted => deletedAt != null;
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'userId': userId,
-        'taskId': taskId,
-        'yearId': yearId,
-        'dateId': dateId,
-        'timeId': timeId,
-        'weatherId': weatherId,
+        'user': user,
+        'task': task,
+        'year': year,
+        'date': date,
+        'time': time,
+        'weather': weather,
         'isAttendance': isAttendance,
         'createdUserId': createdUserId,
         'updatedUserId': updatedUserId,

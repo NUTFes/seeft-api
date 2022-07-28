@@ -9,12 +9,14 @@ class Service {
   final UserController userController;
   final TimeController timeController;
   final BureauController bureauController;
+  final ShiftController shiftController;
 
   Service(
     this.healthController,
     this.userController,
     this.timeController,
     this.bureauController,
+    this.shiftController,
   );
 
   Handler get handler {
@@ -31,6 +33,8 @@ class Service {
     router.mount('/times', TimeApi(timeController).router);
 
     router.mount('/bureaus', BureauApi(bureauController).router);
+
+    router.mount('/shifts', ShiftApi(shiftController).router);
 
     router.all('/<ignored|.*>', (Request request) {
       return Response.notFound('Page not found');
