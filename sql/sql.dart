@@ -26,7 +26,7 @@ void main(List<String> args) async {
   parser.addCommand('migrate');
   var results = parser.parse(args);
 
-  if (results['help']){
+  if (results['help']) {
     var message = '''
 Usage: dart sql.dart <command> [arguments]
 
@@ -43,7 +43,7 @@ New command options:
 ''';
     print(message);
     exit(0);
-  } 
+  }
 
   if (results.command?.name == "new") {
     run(results.command?['model']);

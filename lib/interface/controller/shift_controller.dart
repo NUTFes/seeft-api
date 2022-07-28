@@ -20,13 +20,13 @@ class ShiftController {
       final req = User(id: int.parse(id));
       final res = await shiftUsecase.getShiftsByUser(request.context, req);
       return statusResponse.responseOK(jsonEncode(res));
-      
+
 /*
       List<Time> times = await timeUsecase.getTimes(request.context);
       return statusResponse.responseOK(jsonEncode(times));
 */
     } catch (e) {
-      Log.severe('timeContoller.getTimes: ${e.toString()}');
+      Log.severe('shiftContoller.getShiftsByUser: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }

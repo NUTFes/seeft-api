@@ -26,7 +26,7 @@ initializeServer(Environment env) async {
   final timeController = TimeController(statusResponse, timeUsecase);
   final bureauController = BureauController(statusResponse, bureauUsecase);
   final shiftController = ShiftController(statusResponse, shiftUsecase);
-  
+
   final service = Service(
     healthController,
     userController,

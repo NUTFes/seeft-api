@@ -13,7 +13,6 @@ class ShiftUsecaseImpl implements ShiftUsecase {
   @override
   Future<List<Shift>> getShiftsByUser(ctx, User req) async {
     List<Shift> list = await shiftRepository.getShiftsByUser(ctx, req);
-
     return list;
   }
 }

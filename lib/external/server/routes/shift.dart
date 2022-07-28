@@ -10,7 +10,7 @@ class ShiftApi {
     final router = Router();
 
 //    router.get('/', controller.getShifts)
-      router.get('/users/<id>', controller.getShiftsByUser);
+    router.get('/users/<id>', controller.getShiftsByUser);
 //    router.post('/', controller.insertShifts);
 
     return router;
