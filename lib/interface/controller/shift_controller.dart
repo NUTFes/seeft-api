@@ -16,17 +16,28 @@ class ShiftController {
 
   Future<Response> getShiftsByUser(Request request, String id) async {
     try {
-      Log.info('${request.headers}');
       final req = User(id: int.parse(id));
       final res = await shiftUsecase.getShiftsByUser(request.context, req);
-      return statusResponse.responseOK(jsonEncode(res));
 
-/*
-      List<Time> times = await timeUsecase.getTimes(request.context);
-      return statusResponse.responseOK(jsonEncode(times));
-*/
+      return statusResponse.responseOK(jsonEncode(res));
     } catch (e) {
       Log.severe('shiftContoller.getShiftsByUser: ${e.toString()}');
+      var json = jsonEncode({'message': e.toString()});
+      return statusResponse.responseBadRequest(json);
+    }
+  }
+
+  Future<Response> getShiftsByUserAndDateAndWeather(
+      Request request, String userId, String dateId, String weatherId) async {
+    try {
+      final req = Shift(
+          user: User(id: int.parse(userId)),
+          date: Date(id: int.parse(dateId)),
+          weather: Weather(id: int.parse(weatherId)));
+      final res = await shiftUsecase.getShiftsByUserAndDateAndWeather(request.context, req);
+      return statusResponse.responseOK(jsonEncode(res));
+    } catch (e) {
+      Log.severe('shiftController.getShiftsByUserAndDateAndWeather: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }
