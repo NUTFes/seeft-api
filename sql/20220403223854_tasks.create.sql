@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS tasks (
   `url` VARCHAR(220) NOT NULL,
   `superviser` VARCHAR(50) NOT NULL,
   `notes` TINYTEXT,
+  `year_id` INT UNSIGNED NOT NULL,
   `created_user_id` INT UNSIGNED NOT NULL,
   `updated_user_id` INT UNSIGNED NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

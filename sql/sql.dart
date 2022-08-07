@@ -18,14 +18,30 @@ void main(List<String> args) async {
 これから増えるはず
   var seedCommand = parser.addCommand('seed');
   */
+  parser.addFlag('help', abbr: 'h', defaultsTo: false);
   parser.addCommand('seed');
   var newCommand = parser.addCommand('new');
-  newCommand.addOption('model', abbr: 'm');
+  newCommand.addOption('model', abbr: 'm', defaultsTo: 'test');
 
   parser.addCommand('migrate');
   var results = parser.parse(args);
 
-  if (results.command?.name == null) {
+  if (results['help']) {
+    var message = '''
+Usage: dart sql.dart <command> [arguments]
+
+Global options:
+-h, --help   Print this usage information.
+
+Available commands:
+  seed       Database seeding `seed.sql`.
+  migrate    Migrate SQL.
+  new        Create migrated sql file.
+
+New command options:
+-m, --model <NAME>   Table name.
+''';
+    print(message);
     exit(0);
   }
 
@@ -35,6 +51,7 @@ void main(List<String> args) async {
     seed();
   } else {
     print("Not Found Option.");
+    exit(0);
   }
 }
 

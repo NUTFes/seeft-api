@@ -38,7 +38,7 @@ VALUES
   ('20:00'),
   ('20:30'),
   ('21:00'),
-  ('21:30'),;
+  ('21:30');
   
 INSERT INTO grades
   (`grade`)
@@ -50,7 +50,8 @@ VALUES
   ('M1'),
   ('M2'),
   ('D1'),
-  ('D2');
+  ('D2'),
+  ('OB');
 
 INSERT INTO dates
   (`date`)
@@ -84,3 +85,37 @@ INSERT INTO years
 VALUES
   ('40th'),
   ('41st');
+
+INSERT INTO users
+  (`name`, `bureau_id`, `grade_id`)
+VALUES
+  ('Admin', 14, 8);
+
+INSERT INTO permissions
+  (`user_id`, `allow_shift`, `allow_task`, `allow_user`, `allow_property`)
+VALUES
+  (1, True, True, True, True);
+
+-- 以下テスト用のデータなので本番環境で起こらないようにする
+INSERT INTO tasks
+  (`task`, `place`, `url`, `superviser`, `notes`, `created_user_id`, `updated_user_id`, `year_id`)
+VALUES
+  ('テスト1', '24', 'https://example.com', 'Admin', '', 1, 1, 1),
+  ('テスト2', '体育館', 'https://example.com', 'Admin', '', 1, 1, 1),
+  ('テスト3', 'D講', 'https://nutfes.net', 'Admin', '', 1, 1, 1);
+
+INSERT INTO shifts
+  (user_id, task_id, year_id, date_id, time_id, weather_id, created_user_id, updated_user_id)
+VALUES
+  (1, 1, 1, 1, 1, 1, 1, 1),
+  (1, 1, 1, 1, 2, 1, 1, 1),
+  (1, 1, 1, 1, 3, 1, 1, 1),
+  (1, 2, 1, 1, 4, 1, 1, 1),
+  (1, 2, 1, 1, 5, 1, 1, 1),
+  (1, 2, 1, 1, 6, 1, 1, 1),
+  (1, 1, 1, 1, 7, 1, 1, 1),
+  (1, 1, 1, 1, 8, 1, 1, 1),
+  (1, 3, 1, 1, 9, 1, 1, 1),
+  (1, 3, 1, 1, 10, 1, 1, 1),
+  (1, 3, 1, 1, 11, 1, 1, 1),
+  (1, 3, 1, 1, 12, 1, 1, 1);
