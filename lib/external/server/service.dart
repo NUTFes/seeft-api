@@ -6,6 +6,7 @@ import '../../interface/controller/controller.dart';
 
 class Service {
   final HealthController healthController;
+  final AuthController authController;
   final UserController userController;
   final TimeController timeController;
   final BureauController bureauController;
@@ -17,6 +18,7 @@ class Service {
     this.timeController,
     this.bureauController,
     this.shiftController,
+    this.authController,
   );
 
   Handler get handler {
@@ -27,6 +29,8 @@ class Service {
     });
 
     router.get('/healthz', healthController.getHealth);
+
+    router.mount('/auth', AuthApi(authController).router);
 
     router.mount('/users', UserApi(userController).router);
 

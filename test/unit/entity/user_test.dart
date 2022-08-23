@@ -44,6 +44,7 @@ void main() {
     const Map<String, dynamic> initialMap = {
       'id': 0,
       'name': '',
+      'mail': '',
       'bureauId': 0,
       'gradeId': 0,
       'createdAt': '0000-01-01 00:00:00.000',
@@ -55,6 +56,7 @@ void main() {
     const Map<String, dynamic> testMap = {
       'id': 1,
       'name': 'hoge',
+      'mail': '',
       'bureauId': 100,
       'gradeId': 4,
       'createdAt': '1998-10-23 04:35:22.000',

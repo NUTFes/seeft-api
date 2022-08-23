@@ -20,12 +20,14 @@ initializeServer(Environment env) async {
   final timeUsecase = TimeUsecaseImpl(timeRepositoty);
   final bureauUsecase = BureauUsecaseImpl(bureauRepository);
   final shiftUsecase = ShiftUsecaseImpl(shiftRepository);
+  final authUsecase = AuthUsecaseImpl(userRepository);
 
   final healthController = HealthController();
   final userController = UserController(statusResponse, userUsecase);
   final timeController = TimeController(statusResponse, timeUsecase);
   final bureauController = BureauController(statusResponse, bureauUsecase);
   final shiftController = ShiftController(statusResponse, shiftUsecase);
+  final authController = AuthController(statusResponse, authUsecase);
 
   final service = Service(
     healthController,
@@ -33,6 +35,7 @@ initializeServer(Environment env) async {
     timeController,
     bureauController,
     shiftController,
+    authController,
   );
   final server = Server(service, env);
 

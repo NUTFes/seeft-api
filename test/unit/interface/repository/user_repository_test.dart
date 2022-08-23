@@ -137,6 +137,7 @@ _createList() async {
     {
       'id': 1,
       'name': 'hoge',
+      'mail': '',
       'bureau_id': 1,
       'grade_id': 2,
     }
@@ -147,6 +148,7 @@ _createMap() async {
   return await Future<Map<String, dynamic>>.value({
     'id': 1,
     'name': 'hoge',
+    'mail': '',
     'bureau_id': 1,
     'grade_id': 2,
   });
