@@ -61,7 +61,6 @@ seed() async {
   final user = env['DATABASE_USER'] ?? '';
   final password = env['DATABASE_PASSWORD'] ?? '';
   final name = env['DATABASE_NAME'] ?? '';
-  
 
   final ConnectionSettings settings = ConnectionSettings(host: host, user: user, password: password, db: name);
   var conn = await MySqlConnection.connect(settings);
