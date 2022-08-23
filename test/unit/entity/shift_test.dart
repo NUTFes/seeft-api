@@ -64,6 +64,7 @@ void main() {
       'user': {
         'id': 0,
         'name': '',
+        'mail': '',
         'bureauId': 0,
         'gradeId': 0,
         'createdAt': '0000-01-01 00:00:00.000',
@@ -124,6 +125,7 @@ void main() {
       'user': {
         'id': 1,
         'name': '',
+        'mail': '',
         'bureauId': 0,
         'gradeId': 0,
         'createdAt': '0000-01-01 00:00:00.000',

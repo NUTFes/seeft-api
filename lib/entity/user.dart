@@ -1,6 +1,7 @@
 class User {
   final int id;
   final String name;
+  final String mail;
   final int bureauId;
   final int gradeId;
   final DateTime createdAt;
@@ -10,6 +11,7 @@ class User {
   User({
     this.id = 0,
     this.name = '',
+    this.mail = '',
     this.bureauId = 0,
     this.gradeId = 0,
     DateTime? createdAt,
@@ -23,6 +25,7 @@ class User {
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
+        'mail': mail,
         'bureauId': bureauId,
         'gradeId': gradeId,
         'createdAt': createdAt.toString(),

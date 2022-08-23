@@ -6,4 +6,5 @@ abstract class UserRepository {
   Future<User> insertUser(ctx, User req);
   Future<User> updateUser(ctx, User user);
   Future<User> deleteUser(ctx, User user);
+  Future<User> getUserByMail(ctx, User req);
 }

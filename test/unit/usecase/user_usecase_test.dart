@@ -93,6 +93,11 @@ class UserRepositoryTest implements UserRepository {
   Future<User> deleteUser(ctx, User req) async {
     return await _createUser(req);
   }
+
+  @override
+  Future<User> getUserByMail(ctx, User req) async {
+    return await _createUser(req);
+  }
 }
 
 _createList() async {

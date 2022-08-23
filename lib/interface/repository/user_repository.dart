@@ -83,10 +83,23 @@ SELECT * FROM users WHERE id=${user.id};
     return _convertUser(data);
   }
 
+  @override
+  Future<User> getUserByMail(ctx, User req) async {
+    String sql = '''
+SELECT * FROM users
+WHERE mail="${req.mail}";
+''';
+
+    Map<String, dynamic> data = await database.find(ctx, sql);
+
+    return _convertUser(data);
+  }
+
   User _convertUser(Map<String, dynamic> data) {
     return User(
       id: data['id'],
       name: data['name'],
+      mail: data['mail'],
       bureauId: data['bureau_id'],
       gradeId: data['grade_id'],
       createdAt: data['created_at'],

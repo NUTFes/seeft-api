@@ -87,9 +87,9 @@ VALUES
   ('41st');
 
 INSERT INTO users
-  (`name`, `bureau_id`, `grade_id`)
+  (`name`,`mail`, `bureau_id`, `grade_id`)
 VALUES
-  ('Admin', 14, 8);
+  ('Admin', 'admin@nutfes.net', 14, 8);
 
 INSERT INTO permissions
   (`user_id`, `allow_shift`, `allow_task`, `allow_user`, `allow_property`)

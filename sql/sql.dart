@@ -56,7 +56,13 @@ New command options:
 }
 
 seed() async {
-  final ConnectionSettings settings = ConnectionSettings(host: 'db', user: 'mysql', password: 'pwd', db: 'seeft');
+  Map<String, String> env = Platform.environment;
+  final host = env['DATABASE_HOST'] ?? '';
+  final user = env['DATABASE_USER'] ?? '';
+  final password = env['DATABASE_PASSWORD'] ?? '';
+  final name = env['DATABASE_NAME'] ?? '';
+
+  final ConnectionSettings settings = ConnectionSettings(host: host, user: user, password: password, db: name);
   var conn = await MySqlConnection.connect(settings);
 
   String file = await File('/myapp/sql/seed.sql').readAsString();
