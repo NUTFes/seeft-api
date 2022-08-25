@@ -10,7 +10,7 @@ class AuthApi {
   Router get router {
     final router = Router();
 
-    router.get('/signin', controller.signIn);
+    router.get('/signin/<mail>', controller.signIn);
 //    router.get('/<id>', controller.getBureau);
 
     return router;
