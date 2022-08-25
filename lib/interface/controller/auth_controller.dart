@@ -14,18 +14,19 @@ class AuthController {
     this.authUsecase,
   );
 
-  signIn(Request request) async {
+  signIn(Request request, String mail) async {
     try {
-      final body = await request.readAsString();
-      final params = jsonDecode(body);
-      if (params['mail'] == null) {
-        throw Exception('mail params does not exist');
-      }
+//      final body = await request.readAsString();
+//      final params = jsonDecode(body);
+//      if (params['mail'] == null) {
+//        throw Exception('mail params does not exist');
+//      }
+      print(mail);
 
-      User user = await authUsecase.signIn(request.context, User(mail: params['mail']));
+      User user = await authUsecase.signIn(request.context, User(mail: mail));
       return statusResponse.responseOK(jsonEncode(user));
     } catch (e) {
-      Log.severe('BureauController.getBureaus: ${e.toString()}');
+      Log.severe('AuthController.signIn: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }

@@ -86,11 +86,12 @@ SELECT * FROM users WHERE id=${user.id};
   @override
   Future<User> getUserByMail(ctx, User req) async {
     String sql = '''
-SELECT * FROM users
-WHERE mail="${req.mail}";
+SELECT id, name, mail, bureau_id, grade_id, created_at, updated_at, deleted_at
+FROM users WHERE mail="${req.mail}";
 ''';
 
     Map<String, dynamic> data = await database.find(ctx, sql);
+    print(data);
 
     return _convertUser(data);
   }
