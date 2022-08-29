@@ -42,4 +42,35 @@ class ShiftController {
       return statusResponse.responseBadRequest(json);
     }
   }
+
+  Future<Response> getShiftsByYear(
+      Request request, String userId, String yearid, String dateId) async {
+    try {
+      final req = shift(
+        user: User(id: int.parse(userid)),
+        year: Year(id: int.parse(yearid)),
+        date: Date(id: int.parse(dateId)));
+      final res =  await shiftUsecase.getShiftsByYear(request.context, req);
+      return statusResponse.responseOK(jsonEncode(res));
+    }catch (e) {
+      Log.severe('shiftController.getShiftsByYearOrDate: ${e.toString()}');
+      var json = jsonEncode({'message': e.toString()});
+      return statusResponse.responseBadRequest(json);
+    }
+  }
+
+  Future<Response> getShiftsByDate(
+      Request request, String userId, String dateId) async {
+    try {
+      final req = shift(
+        user: User(id: int.parse(userid)),
+        date: Date(id: int.parse(dateId)));
+      final res =  await shiftUsecase.getShiftsByDate(request.context, req);
+      return statusResponse.responseOK(jsonEncode(res));
+    }catch (e) {
+      Log.severe('shiftController.getShiftsByYearOrDate: ${e.toString()}');
+      var json = jsonEncode({'message': e.toString()});
+      return statusResponse.responseBadRequest(json);
+    }
+  }
 }

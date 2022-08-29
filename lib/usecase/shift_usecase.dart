@@ -22,4 +22,16 @@ class ShiftUsecaseImpl implements ShiftUsecase {
     List<Shift> list = await shiftRepository.getShiftsByUserAndDateAndWeather(ctx, req);
     return list;
   }
+
+  @override
+  Future<List<Shift>> getShiftsByYear(ctx, Shift req) async {
+    List<Shift> list = await shiftRepository.getShiftsByYear(ctx, req);
+    return list;
+  }
+
+  @override
+  Future<List<Shift>> getShiftsByDate(ctx, Shift req) async {
+    List<Shift> list = await shiftRepository.getShiftsByDate(ctx, req);
+    return list;
+  }
 }
