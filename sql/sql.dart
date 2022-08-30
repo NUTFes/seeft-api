@@ -20,7 +20,7 @@ void main(List<String> args) async {
   */
   parser.addFlag('help', abbr: 'h', defaultsTo: false);
   parser.addCommand('seed');
-  
+
   var newCommand = parser.addCommand('new');
   newCommand.addOption('model', abbr: 'm', defaultsTo: 'test');
 
@@ -48,11 +48,11 @@ New command options:
     print(message);
     exit(0);
   }
-  
+
   if (results.command?.name == "new") {
     run(results.command?['model']);
   } else if (results.command?.name == 'seed') {
-      seed();
+    seed();
   } else if (results.command?.name == 'user') {
     user(results.command?['csv']);
   } else {
@@ -120,17 +120,17 @@ user(csvFile) async {
     if (l[0] == '番号') {
       continue;
     }
-    
+
     String sql = '''
 INSERT INTO users (`name`, `mail`, `bureau_id`, `grade_id`)
-VALUES ('${l[4]}', '${l[8]}', ${_bureau_id(l[1])}, ${_grade_id(l[3])});
+VALUES ('${l[4]}', '${l[8]}', ${_bureauId(l[1])}, ${_gradeId(l[3])});
 ''';
     await conn.query(sql);
   }
   exit(0);
 }
 
-_bureau_id(String bureau) {
+_bureauId(String bureau) {
   switch (bureau) {
     case '委員長':
       return 1;
@@ -153,7 +153,7 @@ _bureau_id(String bureau) {
   }
 }
 
-_grade_id(String grade) {
+_gradeId(String grade) {
   switch (grade) {
     case 'B1':
       return 1;
