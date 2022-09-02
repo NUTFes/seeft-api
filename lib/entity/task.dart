@@ -8,6 +8,7 @@ class Task {
   String url;
   String superviser;
   String notes;
+  int yearId;
   DateTime createdAt;
   DateTime updatedAt;
   DateTime? deletedAt;
@@ -19,11 +20,13 @@ class Task {
     this.place = '',
     this.url = '',
     this.superviser = '',
-    this.notes = '',
+    String? notes,
+    this.yearId = 0,
     DateTime? createdAt,
     DateTime? updatedAt,
     this.deletedAt,
-  })  : createdAt = createdAt ?? DateTime(0),
+  })  : notes = notes ?? '',
+        createdAt = createdAt ?? DateTime(0),
         updatedAt = updatedAt ?? DateTime(0);
 
   bool get isDeleted => deletedAt != null;
