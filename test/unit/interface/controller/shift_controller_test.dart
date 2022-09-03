@@ -23,6 +23,20 @@ void main() {
     final correct = await _createList();
     expect(shifts.readAsString(), completion(jsonEncode(correct)));
   });
+
+  test('shift_controller.getShiftsByYear', () async {
+    var request = Request('GET', Uri.parse('http://localhost:3000/shifts/users/1'));
+    final shifts = await controller.getShiftsByYear(request, "1");
+    final correct = await _createList();
+    expect(shifts.readAsString(), completion(jsonEncode(correct)));
+  });
+
+  test('shift_controller.getShiftsByDate', () async {
+    var request = Request('GET', Uri.parse('http://localhost:3000/shifts/users/dates/2'));
+    final shifts = await controller.getShiftsByDate(request, "1", "2", "3");
+    final correct = await _createList();
+    expect(shifts.readAsString(), completion(jsonEncode(correct)));
+  });
 }
 
 class ShiftUsecaseTest implements ShiftUsecase {
@@ -35,6 +49,18 @@ class ShiftUsecaseTest implements ShiftUsecase {
   @override
   Future<List<Shift>> getShiftsByUserAndDateAndWeather(ctx, Shift req) async {
     final list = await _createList();
+    return list;
+  }
+
+  @override
+  Future<List<Shift>> getShiftsByYear(ctx, Shift req) async {
+    List<Shift> list = await shiftRepository.getShiftsByYear(ctx, req);
+    return list;
+  }
+
+  @override
+  Future<List<Shift>> getShiftsByDate(ctx, Shift req) async {
+    List<Shift> list = await shiftRepository.getShiftsByDate(ctx, req);
     return list;
   }
 }

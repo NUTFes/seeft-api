@@ -4,6 +4,8 @@ import './repository/repository.dart';
 abstract class ShiftUsecase {
   Future<List<Shift>> getShiftsByUser(ctx, User req);
   Future<List<Shift>> getShiftsByUserAndDateAndWeather(ctx, Shift req);
+  Future<List<Shift>> getShiftsByYear(ctx, Shift req);
+  Future<List<Shift>> getShiftsByDate(ctx, Shift req);
 }
 
 class ShiftUsecaseImpl implements ShiftUsecase {
