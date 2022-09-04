@@ -1,13 +1,13 @@
 class Year {
   int id;
-  String year;
+  int year;
   DateTime createdAt;
   DateTime updatedAt;
   DateTime? deletedAt;
 
   Year({
     this.id = 0,
-    this.year = '',
+    this.year = 0,
     DateTime? createdAt,
     DateTime? updatedAt,
     this.deletedAt,
