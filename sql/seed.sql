@@ -74,10 +74,10 @@ VALUES
   ('情報局');
 
 INSERT INTO years
-  (`year`)
+  (id, `year`)
 VALUES
-  ('40th'),
-  ('41st');
+  (40, 2021),
+  (41, 2022);
 
 INSERT INTO users
   (`name`,`mail`, `bureau_id`, `grade_id`)
