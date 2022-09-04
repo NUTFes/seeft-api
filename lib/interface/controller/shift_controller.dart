@@ -46,9 +46,7 @@ class ShiftController {
   Future<Response> getShiftsByYear(Request request, String userId, String yearId, String dateId) async {
     try {
       final req = Shift(
-          user: User(id: int.parse(userId)), 
-          year: Year(id: int.parse(yearId)), 
-          date: Date(id: int.parse(dateId)));
+          user: User(id: int.parse(userId)), year: Year(id: int.parse(yearId)), date: Date(id: int.parse(dateId)));
       final res = await shiftUsecase.getShiftsByYear(request.context, req);
       return statusResponse.responseOK(jsonEncode(res));
     } catch (e) {
@@ -60,9 +58,7 @@ class ShiftController {
 
   Future<Response> getShiftsByDate(Request request, String userId, String dateId) async {
     try {
-      final req = Shift(
-        user: User(id: int.parse(userId)), 
-        date: Date(id: int.parse(dateId)));
+      final req = Shift(user: User(id: int.parse(userId)), date: Date(id: int.parse(dateId)));
       final res = await shiftUsecase.getShiftsByDate(request.context, req);
       return statusResponse.responseOK(jsonEncode(res));
     } catch (e) {
