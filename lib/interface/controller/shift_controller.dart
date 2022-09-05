@@ -43,28 +43,19 @@ class ShiftController {
     }
   }
 
-  Future<Response> getShiftsByYear(Request request, String userId, String yearId, String dateId) async {
+  Future<Response> getShiftsByYearAndDateAndWeather(Request request, String yearId, String dateId, String weatherId) async {
     try {
       final req = Shift(
-          user: User(id: int.parse(userId)), year: Year(id: int.parse(yearId)), date: Date(id: int.parse(dateId)));
-      final res = await shiftUsecase.getShiftsByYear(request.context, req);
+          year: Year(id: int.parse(yearId)), 
+          date: Date(id: int.parse(dateId)),
+          weather: Weather(id: int.parse(weatherId)));
+      final res = await shiftUsecase.getShiftsByYearAndDateAndWeather(request.context, req);
       return statusResponse.responseOK(jsonEncode(res));
     } catch (e) {
-      Log.severe('shiftController.getShiftsByYear: ${e.toString()}');
+      Log.severe('shiftController.getShiftsByYearAndDateAndWeather: ${e.toString()}');
       var json = jsonEncode({'message': e.toString()});
       return statusResponse.responseBadRequest(json);
     }
   }
 
-  Future<Response> getShiftsByDate(Request request, String userId, String dateId) async {
-    try {
-      final req = Shift(user: User(id: int.parse(userId)), date: Date(id: int.parse(dateId)));
-      final res = await shiftUsecase.getShiftsByDate(request.context, req);
-      return statusResponse.responseOK(jsonEncode(res));
-    } catch (e) {
-      Log.severe('shiftController.getShiftsByDate: ${e.toString()}');
-      var json = jsonEncode({'message': e.toString()});
-      return statusResponse.responseBadRequest(json);
-    }
-  }
 }

@@ -24,19 +24,13 @@ void main() {
     expect(shifts.readAsString(), completion(jsonEncode(correct)));
   });
 
-  test('shift_controller.getShiftsByYear', () async {
+  test('shift_controller.getShiftsByYearAndDateAndWeather', () async {
     var request = Request('GET', Uri.parse('http://localhost:3000/shifts/users/1'));
-    final shifts = await controller.getShiftsByYear(request, "1");
+    final shifts = await controller.getShiftsByYearAndDateAndWeather(request, "1");
     final correct = await _createList();
     expect(shifts.readAsString(), completion(jsonEncode(correct)));
   });
 
-  test('shift_controller.getShiftsByDate', () async {
-    var request = Request('GET', Uri.parse('http://localhost:3000/shifts/users/dates/2'));
-    final shifts = await controller.getShiftsByDate(request, "1", "2", "3");
-    final correct = await _createList();
-    expect(shifts.readAsString(), completion(jsonEncode(correct)));
-  });
 }
 
 class ShiftUsecaseTest implements ShiftUsecase {

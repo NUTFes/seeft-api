@@ -12,8 +12,7 @@ class ShiftApi {
 //    router.get('/', controller.getShifts)
     router.get('/users/<id>', controller.getShiftsByUser);
     router.get('/users/<userId>/dates/<dateId>/weathers/<weatherId>', controller.getShiftsByUserAndDateAndWeather);
-    router.get('/users/<yaerId>', controller.getShiftsByYear);
-    router.get('/users/dates/<dateId>', controller.getShiftsByDate);
+    router.get('/years/<yaerId>/dates/<dateId>/weathers/<weatherId>', controller.getShiftsByYearAndDateAndWeather);
 //    router.post('/', controller.insertShifts);
 
     return router;
