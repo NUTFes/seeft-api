@@ -28,6 +28,19 @@ $ docker compose run --rm server dart ./sql/sql.dart seed
 $ docker compose up
 ```
 
+## Deployment
+
+mysqldefがあったら `./sciripts/script.sh`は実行しなくて良い
+
+``` fish
+$ docker compose build
+$ docker compose up -d
+$ ./scripts/script.sh
+$ ./sql/migrate.sh
+$ docker compose run --rm server dart ./sql/sql.dart seed
+$ docker compose run --rm server dart ./sql/sql.dart user ./sql/user.csv
+```
+
 ### logを表示させたい時
 
 ``` fish

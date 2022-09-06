@@ -85,7 +85,7 @@ void main() {
       },
       'year': {
         'id': 0,
-        'year': '',
+        'year': 0,
         'createdAt': '0000-01-01 00:00:00.000',
         'updatedAt': '0000-01-01 00:00:00.000',
         'isDeleted': false,
@@ -146,7 +146,7 @@ void main() {
       },
       'year': {
         'id': 1,
-        'year': '',
+        'year': 0,
         'createdAt': '0000-01-01 00:00:00.000',
         'updatedAt': '0000-01-01 00:00:00.000',
         'isDeleted': false,

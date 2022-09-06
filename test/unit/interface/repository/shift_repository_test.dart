@@ -197,7 +197,7 @@ _createList() async {
       'task_superviser': 'hoge',
       'task_notes': Null,
       'year_id': 1,
-      'year_name': '1000th',
+      'year_name': 0,
       'date_id': 2,
       'date_name': 'hoge',
       'time_id': 1,

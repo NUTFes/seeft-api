@@ -20,8 +20,12 @@ void main(List<String> args) async {
   */
   parser.addFlag('help', abbr: 'h', defaultsTo: false);
   parser.addCommand('seed');
+
   var newCommand = parser.addCommand('new');
   newCommand.addOption('model', abbr: 'm', defaultsTo: 'test');
+
+  var userCommand = parser.addCommand('user');
+  userCommand.addOption('csv', defaultsTo: 'user.csv');
 
   parser.addCommand('migrate');
   var results = parser.parse(args);
@@ -49,6 +53,8 @@ New command options:
     run(results.command?['model']);
   } else if (results.command?.name == 'seed') {
     seed();
+  } else if (results.command?.name == 'user') {
+    user(results.command?['csv']);
   } else {
     print("Not Found Option.");
     exit(0);
@@ -98,4 +104,76 @@ CREATE TABLE IF NOT EXISTS $name (
 
   print(create);
 //    print(drop);
+}
+
+user(csvFile) async {
+  Map<String, String> env = Platform.environment;
+  final host = env['DATABASE_HOST'] ?? '';
+  final user = env['DATABASE_USER'] ?? '';
+  final password = env['DATABASE_PASSWORD'] ?? '';
+  final name = env['DATABASE_NAME'] ?? '';
+
+  final ConnectionSettings settings = ConnectionSettings(host: host, user: user, password: password, db: name);
+  var conn = await MySqlConnection.connect(settings);
+  for (String line in await File(csvFile).readAsLines()) {
+    List l = line.split(',').toList();
+    if (l[0] == '番号') {
+      continue;
+    }
+
+    String sql = '''
+INSERT INTO users (`name`, `mail`, `bureau_id`, `grade_id`)
+VALUES ('${l[4]}', '${l[8]}', ${_bureauId(l[1])}, ${_gradeId(l[3])});
+''';
+    await conn.query(sql);
+  }
+  exit(0);
+}
+
+_bureauId(String bureau) {
+  switch (bureau) {
+    case '委員長':
+      return 1;
+    case '副委員長':
+      return 2;
+    case '総務局':
+      return 3;
+    case '企画局':
+      return 4;
+    case '渉外局':
+      return 5;
+    case '財務局':
+      return 6;
+    case '制作局':
+      return 7;
+    case '情報局':
+      return 8;
+    default:
+      return 0;
+  }
+}
+
+_gradeId(String grade) {
+  switch (grade) {
+    case 'B1':
+      return 1;
+    case 'B2':
+      return 2;
+    case 'B3':
+      return 3;
+    case 'B4':
+      return 4;
+    case 'M1':
+      return 5;
+    case 'M2':
+      return 6;
+    case 'D1':
+      return 7;
+    case 'D2':
+      return 8;
+    case 'OB':
+      return 9;
+    default:
+      return 0;
+  }
 }

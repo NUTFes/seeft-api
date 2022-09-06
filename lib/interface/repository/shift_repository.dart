@@ -291,5 +291,6 @@ Shift _convertShift(d) {
     updatedAt: d['shift_updated_at'],
     deletedAt: d['shift_deleted_at'],
   );
+
   return shift;
 }
