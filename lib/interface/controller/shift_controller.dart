@@ -43,10 +43,11 @@ class ShiftController {
     }
   }
 
-  Future<Response> getShiftsByYearAndDateAndWeather(Request request, String yearId, String dateId, String weatherId) async {
+  Future<Response> getShiftsByYearAndDateAndWeather(
+      Request request, String yearId, String dateId, String weatherId) async {
     try {
       final req = Shift(
-          year: Year(id: int.parse(yearId)), 
+          year: Year(id: int.parse(yearId)),
           date: Date(id: int.parse(dateId)),
           weather: Weather(id: int.parse(weatherId)));
       final res = await shiftUsecase.getShiftsByYearAndDateAndWeather(request.context, req);
@@ -57,5 +58,4 @@ class ShiftController {
       return statusResponse.responseBadRequest(json);
     }
   }
-
 }

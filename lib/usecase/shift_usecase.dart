@@ -29,5 +29,4 @@ class ShiftUsecaseImpl implements ShiftUsecase {
     List<Shift> list = await shiftRepository.getShiftsByYearAndDateAndWeather(ctx, req);
     return list;
   }
-
 }

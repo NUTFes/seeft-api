@@ -30,7 +30,6 @@ void main() {
     final correct = await _createList();
     expect(shifts.readAsString(), completion(jsonEncode(correct)));
   });
-
 }
 
 class ShiftUsecaseTest implements ShiftUsecase {
