@@ -211,7 +211,7 @@ LEFT JOIN years ON shifts.year_id = years.id
 LEFT JOIN dates ON shifts.date_id = dates.id
 LEFT JOIN times ON shifts.time_id = times.id
 LEFT JOIN weathers ON shifts.weather_id = weathers.id
-WHERE year_id=${req.year.id} AND
+WHERE shifts.year_id=${req.year.id} AND
       date_id=${req.date.id} AND
       weather_id=${req.weather.id};
 ''';
