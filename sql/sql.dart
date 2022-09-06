@@ -27,6 +27,9 @@ void main(List<String> args) async {
   var userCommand = parser.addCommand('user');
   userCommand.addOption('csv', defaultsTo: 'user.csv');
 
+  var taskCommand = parser.addCommand('task');
+  taskCommand.addOption('csv', defaultsTo: 'task.csv');
+
   parser.addCommand('migrate');
   var results = parser.parse(args);
 
@@ -41,6 +44,7 @@ Available commands:
   seed       Database seeding `seed.sql`.
   migrate    Migrate SQL.
   new        Create migrated sql file.
+  task       Create tasks table
 
 New command options:
 -m, --model <NAME>   Table name.
@@ -55,6 +59,8 @@ New command options:
     seed();
   } else if (results.command?.name == 'user') {
     user(results.command?['csv']);
+  } else if (results.command?.name == 'task') {
+    task(results.command?['csv']);
   } else {
     print("Not Found Option.");
     exit(0);
@@ -127,6 +133,31 @@ VALUES ('${l[4]}', '${l[8]}', ${_bureauId(l[1])}, ${_gradeId(l[3])});
 ''';
     await conn.query(sql);
   }
+  exit(0);
+}
+
+task(csvFile) async {
+  Map<String, String> env = Platform.environment;
+  final host = env['DATABASE_HOST'] ?? '';
+  final user = env['DATABASE_USER'] ?? '';
+  final password = env['DATABASE_PASSWORD'] ?? '';
+  final name = env['DATABASE_NAME'] ?? '';
+
+  final ConnectionSettings settings = ConnectionSettings(host: host, user: user, password: password, db: name);
+  var conn = await MySqlConnection.connect(settings);
+  for (String line in await File(csvFile).readAsLines()) {
+    List l = line.split(',').toList();
+    if (l[0] == 'タスク名(シフト名)') {
+      continue;
+    }
+
+    String sql = '''
+INSERT INTO tasks (`task`, `color`, `place`, `url`, `superviser`, `notes`, `year_id`, `created_user_id`, `updated_user_id`)
+VALUES ('${l[0]}', 'ffffff' , '1', '${l[1]}', '', '', 1, 1, 1);
+''';
+    await conn.query(sql);
+  }
+  print('task set.');
   exit(0);
 }
 
