@@ -8,6 +8,31 @@ class ShiftRepositoryImpl implements ShiftRepository {
   ShiftRepositoryImpl(this.database);
 
   @override
+  Future<Shift> getShift(ctx, Shift req) async {
+    String sql = '''
+SELECT * FROM shifts
+WHERE shifts.id = ${req.id};
+''';
+
+    Map<String, dynamic> data = await database.find(ctx, sql);
+    return Shift(
+      id: data['id'],
+      user: User(id: data['user_id']),
+      task: Task(id: data['task_id']),
+      year: Year(id: data['year_id']),
+      date: Date(id: data['date_id']),
+      time: Time(id: data['time_id']),
+      weather: Weather(id: data['weather_id']),
+      isAttendance: data['is_attendance'] == 1,
+      createdUserId: data['created_user_id'],
+      updatedUserId: data['updated_user_id'],
+      createdAt: data['created_at'],
+      updatedAt: data['updated_at'],
+      deletedAt: data['deleted_at'],
+    );
+  }
+
+  @override
   Future<List<Shift>> getShiftsByUser(ctx, User req) async {
     String sql = '''
 SELECT

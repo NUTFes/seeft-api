@@ -10,3 +10,4 @@ export 'year.dart';
 export 'permission.dart';
 export 'task.dart';
 export 'shift.dart';
+export 'task_detail.dart';
