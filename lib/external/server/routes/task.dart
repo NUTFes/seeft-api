@@ -10,6 +10,7 @@ class TaskApi {
     final router = Router();
 
     router.get('/', controller.getTasks);
+    router.get('/shifts/<id>', controller.getTaskByShift);
 
     return router;
   }

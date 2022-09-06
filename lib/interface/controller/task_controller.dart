@@ -24,4 +24,15 @@ class TaskController {
       return statusResponse.responseBadRequest(json);
     }
   }
+
+  getTaskByShift(Request request, String id) async {
+    try {
+      TaskDetail task = await taskUsecase.getTaskByShift(request.context, Shift(id: int.parse(id)));
+      return statusResponse.responseOK(jsonEncode(task));
+    } catch (e) {
+      Log.severe('TaskController.getTaskByShift: ${e.toString()}');
+      var json = jsonEncode({'message': e.toString()});
+      return statusResponse.responseBadRequest(json);
+    }
+  }
 }

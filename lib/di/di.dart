@@ -22,7 +22,7 @@ initializeServer(Environment env) async {
   final bureauUsecase = BureauUsecaseImpl(bureauRepository);
   final shiftUsecase = ShiftUsecaseImpl(shiftRepository);
   final authUsecase = AuthUsecaseImpl(userRepository);
-  final taskUsecase = TaskUsecaseImpl(taskRepository);
+  final taskUsecase = TaskUsecaseImpl(taskRepository, shiftRepository);
 
   final healthController = HealthController();
   final userController = UserController(statusResponse, userUsecase);
