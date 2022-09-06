@@ -28,7 +28,7 @@ class ShiftRepositoryTest implements ShiftRepository {
   Future<Shift> getShift(ctx, Shift req) async {
     return Shift();
   }
-  
+
   @override
   Future<List<Shift>> getShiftsByUser(ctx, User req) async {
     final list = await _createList();
