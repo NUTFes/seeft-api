@@ -30,6 +30,9 @@ void main(List<String> args) async {
   var taskCommand = parser.addCommand('task');
   taskCommand.addOption('csv', defaultsTo: 'task.csv');
 
+  var shiftCommand = parser.addCommand('shift');
+  shiftCommand.addOption('csv', defaultsTo: 'shift.csv');
+
   parser.addCommand('migrate');
   var results = parser.parse(args);
 
@@ -44,7 +47,8 @@ Available commands:
   seed       Database seeding `seed.sql`.
   migrate    Migrate SQL.
   new        Create migrated sql file.
-  task       Create tasks table
+  task       Create tasks sql file.
+  shift      Create shifs sql file.
 
 New command options:
 -m, --model <NAME>   Table name.
@@ -61,6 +65,8 @@ New command options:
     user(results.command?['csv']);
   } else if (results.command?.name == 'task') {
     task(results.command?['csv']);
+  } else if(results.command?.name == 'shift') {
+    shift(results.command?['csv']);
   } else {
     print("Not Found Option.");
     exit(0);
@@ -157,7 +163,42 @@ VALUES ('${l[0]}', 'ffffff' , '1', '${l[1]}', '', '', 1, 1, 1);
 ''';
     await conn.query(sql);
   }
-  print('task set.');
+  print('tasks set.');
+  exit(0);
+}
+
+shift(csvFile) async {
+  Map<String, String> env = Platform.environment;
+  final host = env['DATABASE_HOST'] ?? '';
+  final user = env['DATABASE_USER'] ?? '';
+  final password = env['DATABASE_PASSWORD'] ?? '';
+  final name = env['DATABASE_NAME'] ?? '';
+
+  final ConnectionSettings settings = ConnectionSettings(host: host, user: user, password: password, db: name);
+  var conn = await MySqlConnection.connect(settings);
+
+  var tasks = await conn.query('SELECT * FROM tasks');
+  var users = await conn.query('SELECT * FROM users'); 
+  var grades = await conn.query('SELECT * FROM grades');
+  var times = await conn.query('SELECT * FROM times');
+
+  List<List> list;
+  for (String line in await File(csvFile).readAsLines()) {
+    List l = line.split(',').toList();
+    list.add(l);
+  }
+
+  /*
+  for (var i = 0; i <  list[].length; i++) {
+    user_name = i[3];
+    print(user_name);
+    for (var j = 0; j < list.length; j++) {
+      
+    }
+  }
+  */
+  
+  print('shifts set.');
   exit(0);
 }
 
