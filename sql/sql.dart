@@ -68,7 +68,7 @@ New command options:
     user(results.command?['csv']);
   } else if (results.command?.name == 'task') {
     task(results.command?['csv']);
-  } else if(results.command?.name == 'shift') {
+  } else if (results.command?.name == 'shift') {
     shift(
       csvFile: results.command?['csv'],
       year: results.command?['year'],
@@ -180,7 +180,7 @@ shift({csvFile, year, date, weather}) async {
 
   // ToDo: 書き方直す
   var date_id;
-  switch(date) {
+  switch (date) {
     case 'pre':
       date_id = 1;
       break;
@@ -196,7 +196,7 @@ shift({csvFile, year, date, weather}) async {
   }
 
   var weather_id;
-  switch(weather) {
+  switch (weather) {
     case 'sunny':
       weather_id = 1;
       break;
@@ -207,7 +207,7 @@ shift({csvFile, year, date, weather}) async {
       weather_id = 0;
       break;
   }
-  
+
   Map<String, String> env = Platform.environment;
   final host = env['DATABASE_HOST'] ?? '';
   final user = env['DATABASE_USER'] ?? '';
@@ -218,7 +218,7 @@ shift({csvFile, year, date, weather}) async {
   var conn = await MySqlConnection.connect(settings);
 
 //  var tasks = await conn.query('SELECT * FROM tasks');
-//  var users = await conn.query('SELECT * FROM users'); 
+//  var users = await conn.query('SELECT * FROM users');
 //  var grades = await conn.query('SELECT * FROM grades');
 //  var times = await conn.query('SELECT * FROM times');
 
@@ -229,26 +229,25 @@ shift({csvFile, year, date, weather}) async {
   }
 
   // timesはnearly equal x-4
-  final times = await conn.query('SELECT id, time FROM times;');  
-
+  final times = await conn.query('SELECT id, time FROM times;');
 
   for (var y = 3; y < list[0].length; y++) {
     print('${list[3][y]}');
     for (var x = 4; x < list.length; x++) {
       if (list[x][0] == '22:00') break;
-        final u = await conn.query('SELECT id FROM users WHERE name = "${list[3][y]}"');
-        if (u.isEmpty) {
-          continue;
-        }
-        final user_id = u.first.fields['id'];
-        final t = await conn.query('SELECT id FROM tasks WHERE task = "${list[x][y]}"');
-        var task_id;
-        if (t.isEmpty) {
-          task_id = 4;
-        } else {
-          task_id = t.first.fields['id'];
-        }
-        await conn.query('''
+      final u = await conn.query('SELECT id FROM users WHERE name = "${list[3][y]}"');
+      if (u.isEmpty) {
+        continue;
+      }
+      final user_id = u.first.fields['id'];
+      final t = await conn.query('SELECT id FROM tasks WHERE task = "${list[x][y]}"');
+      var task_id;
+      if (t.isEmpty) {
+        task_id = 4;
+      } else {
+        task_id = t.first.fields['id'];
+      }
+      await conn.query('''
 INSERT INTO shifts
 (user_id, task_id, year_id, date_id, time_id, weather_id, created_user_id, updated_user_id)
 VALUES
@@ -256,7 +255,7 @@ VALUES
           ''');
     }
   }
-  
+
   print('shifts set.');
   exit(0);
 }
