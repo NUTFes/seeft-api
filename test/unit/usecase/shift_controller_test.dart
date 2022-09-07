@@ -35,6 +35,12 @@ class ShiftRepositoryTest implements ShiftRepository {
     final list = await _createList();
     return list;
   }
+
+  @override
+  Future<List<Shift>> getShiftsByYearAndDateAndWeather(ctx, Shift req) async {
+    final list = await _createList();
+    return list;
+  }
 }
 
 _createList() async {
