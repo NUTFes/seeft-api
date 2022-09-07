@@ -43,7 +43,6 @@ class ShiftUsecaseTest implements ShiftUsecase {
     List<Shift> list = await _createList();
     return list;
   }
-
 }
 
 _createList() async {
