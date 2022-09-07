@@ -42,4 +42,20 @@ class ShiftController {
       return statusResponse.responseBadRequest(json);
     }
   }
+
+  Future<Response> getShiftsByYearAndDateAndWeather(
+      Request request, String yearId, String dateId, String weatherId) async {
+    try {
+      final req = Shift(
+          year: Year(id: int.parse(yearId)),
+          date: Date(id: int.parse(dateId)),
+          weather: Weather(id: int.parse(weatherId)));
+      final res = await shiftUsecase.getShiftsByYearAndDateAndWeather(request.context, req);
+      return statusResponse.responseOK(jsonEncode(res));
+    } catch (e) {
+      Log.severe('shiftController.getShiftsByYearAndDateAndWeather: ${e.toString()}');
+      var json = jsonEncode({'message': e.toString()});
+      return statusResponse.responseBadRequest(json);
+    }
+  }
 }

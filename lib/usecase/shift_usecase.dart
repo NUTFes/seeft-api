@@ -4,6 +4,7 @@ import './repository/repository.dart';
 abstract class ShiftUsecase {
   Future<List<Shift>> getShiftsByUser(ctx, User req);
   Future<List<Shift>> getShiftsByUserAndDateAndWeather(ctx, Shift req);
+  Future<List<Shift>> getShiftsByYearAndDateAndWeather(ctx, Shift req);
 }
 
 class ShiftUsecaseImpl implements ShiftUsecase {
@@ -20,6 +21,12 @@ class ShiftUsecaseImpl implements ShiftUsecase {
   @override
   Future<List<Shift>> getShiftsByUserAndDateAndWeather(ctx, Shift req) async {
     List<Shift> list = await shiftRepository.getShiftsByUserAndDateAndWeather(ctx, req);
+    return list;
+  }
+
+  @override
+  Future<List<Shift>> getShiftsByYearAndDateAndWeather(ctx, Shift req) async {
+    List<Shift> list = await shiftRepository.getShiftsByYearAndDateAndWeather(ctx, req);
     return list;
   }
 }
