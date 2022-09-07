@@ -32,6 +32,9 @@ void main(List<String> args) async {
 
   var shiftCommand = parser.addCommand('shift');
   shiftCommand.addOption('csv', defaultsTo: 'shift.csv');
+  shiftCommand.addOption('year', abbr: 'y', defaultsTo: '40');
+  shiftCommand.addOption('date', abbr: 'd', allowed: ['pre', '1', '2']);
+  shiftCommand.addOption('weather', abbr: 'w', allowed: ['sunny', 'rainy']);
 
   parser.addCommand('migrate');
   var results = parser.parse(args);
@@ -66,7 +69,12 @@ New command options:
   } else if (results.command?.name == 'task') {
     task(results.command?['csv']);
   } else if(results.command?.name == 'shift') {
-    shift(results.command?['csv']);
+    shift(
+      csvFile: results.command?['csv'],
+      year: results.command?['year'],
+      date: results.command?['date'],
+      weather: results.command?['weather'],
+    );
   } else {
     print("Not Found Option.");
     exit(0);
@@ -167,7 +175,39 @@ VALUES ('${l[0]}', 'ffffff' , '1', '${l[1]}', '', '', 1, 1, 1);
   exit(0);
 }
 
-shift(csvFile) async {
+shift({csvFile, year, date, weather}) async {
+  final year_id = int.parse(year);
+
+  // ToDo: 書き方直す
+  var date_id;
+  switch(date) {
+    case 'pre':
+      date_id = 1;
+      break;
+    case '1':
+      date_id = 2;
+      break;
+    case '2':
+      date_id = 3;
+      break;
+    default:
+      date_id = 4;
+      break;
+  }
+
+  var weather_id;
+  switch(weather) {
+    case 'sunny':
+      weather_id = 1;
+      break;
+    case 'rainy':
+      weather_id = 2;
+      break;
+    default:
+      weather_id = 0;
+      break;
+  }
+  
   Map<String, String> env = Platform.environment;
   final host = env['DATABASE_HOST'] ?? '';
   final user = env['DATABASE_USER'] ?? '';
@@ -177,27 +217,45 @@ shift(csvFile) async {
   final ConnectionSettings settings = ConnectionSettings(host: host, user: user, password: password, db: name);
   var conn = await MySqlConnection.connect(settings);
 
-  var tasks = await conn.query('SELECT * FROM tasks');
-  var users = await conn.query('SELECT * FROM users'); 
-  var grades = await conn.query('SELECT * FROM grades');
-  var times = await conn.query('SELECT * FROM times');
+//  var tasks = await conn.query('SELECT * FROM tasks');
+//  var users = await conn.query('SELECT * FROM users'); 
+//  var grades = await conn.query('SELECT * FROM grades');
+//  var times = await conn.query('SELECT * FROM times');
 
-  List<List> list;
+  final List list = [];
   for (String line in await File(csvFile).readAsLines()) {
     List l = line.split(',').toList();
     list.add(l);
   }
 
+  // timesはnearly equal x-4
+  final times = await conn.query('SELECT id, time FROM times;');  
 
-  /*
-  for (var i = 0; i <  list[].length; i++) {
-    user_name = i[3];
-    print(user_name);
-    for (var j = 0; j < list.length; j++) {
- 
+
+  for (var y = 3; y < list[0].length; y++) {
+    print('${list[3][y]}');
+    for (var x = 4; x < list.length; x++) {
+      if (list[x][0] == '22:00') break;
+        final u = await conn.query('SELECT id FROM users WHERE name = "${list[3][y]}"');
+        if (u.isEmpty) {
+          continue;
+        }
+        final user_id = u.first.fields['id'];
+        final t = await conn.query('SELECT id FROM tasks WHERE task = "${list[x][y]}"');
+        var task_id;
+        if (t.isEmpty) {
+          task_id = 4;
+        } else {
+          task_id = t.first.fields['id'];
+        }
+        await conn.query('''
+INSERT INTO shifts
+(user_id, task_id, year_id, date_id, time_id, weather_id, created_user_id, updated_user_id)
+VALUES
+($user_id, $task_id, $year_id, $date_id, ${x - 3}, $weather_id, 1, 1);
+          ''');
     }
   }
-  */
   
   print('shifts set.');
   exit(0);

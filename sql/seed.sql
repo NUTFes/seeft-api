@@ -95,7 +95,8 @@ INSERT INTO tasks
 VALUES
   ('テスト1', '24', 'https://example.com', 'Admin', '', 1, 1, 1),
   ('テスト2', '体育館', 'https://example.com', 'Admin', '', 1, 1, 1),
-  ('テスト3', 'D講', 'https://nutfes.net', 'Admin', '', 1, 1, 1);
+  ('テスト3', 'D講', 'https://nutfes.net', 'Admin', '', 1, 1, 1),
+  ('なし', '', '', 'Admin', '', 1, 1, 41);
 
 INSERT INTO shifts
   (user_id, task_id, year_id, date_id, time_id, weather_id, created_user_id, updated_user_id)
