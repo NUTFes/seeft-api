@@ -13,7 +13,7 @@ jobs:
       image: dart:stable
       
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: install dependencies
         run: dart pub get
       - name: analyzer
