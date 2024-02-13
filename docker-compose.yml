@@ -26,7 +26,7 @@ services:
 
   db:
     container_name: SeeFT-DB
-    image: mariadb:10.8.3
+    image: mariadb:10.11.7
     volumes:
       - ./mariadb/initdb.d:/docker-entrypoint-initdb.d
       - ./mariadb/db:/var/lib/mysql
